@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Exe</OutputType>
+    <NoWarn>$(NoWarn);CA2252</NoWarn>
+    <EnablePreviewFeatures>true</EnablePreviewFeatures>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Microsoft Agent Framework -->
+    <PackageReference Include="Microsoft.Agents.AI.AzureAI" Version="*-*" />
+    <PackageReference Include="Microsoft.Agents.Hosting.AspNetCore" Version="*-*" />
+    
+    <!-- Azure SDK -->
+    <PackageReference Include="Azure.AI.Projects" Version="*-*" />
+    <PackageReference Include="Azure.Identity" Version="*" />
+    
+    <!-- Model Context Protocol -->
+    <PackageReference Include="ModelContextProtocol" Version="*-*" />
+    
+    <!-- Environment configuration -->
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="*" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="*" />
+  </ItemGroup>
+
+</Project>

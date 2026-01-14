@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "azure-advisor": {
+      "command": "dotnet",
+      "args": [
+        "c:\\dev\\tools\\az-devops\\src\\BudgetFriendlyAzureAdvisor\\bin\\Release\\net10.0\\BudgetFriendlyAzureAdvisor.dll",
+        "--mcp"
+      ],
+      "name": "BudgetFriendlyAzureAdvisor",
+      "description": "Your Azure research assistant focused on cost optimization and free-tier exploration. Ask about Azure services, pricing, POC patterns, and documentation."
+    }
+  }
+}

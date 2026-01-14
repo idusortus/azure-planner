@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug BudgetFriendlyAzureAdvisor (.NET)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-agent",
+      "program": "${workspaceFolder}/src/BudgetFriendlyAzureAdvisor/bin/Debug/net10.0/BudgetFriendlyAzureAdvisor.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/BudgetFriendlyAzureAdvisor",
+      "stopAtEntry": false,
+      "console": "integratedTerminal",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:8087"
+      },
+      "serverReadyAction": {
+        "action": "debugWithEdge",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        "uriFormat": "%s"
+      },
+      "postDebugTask": "Terminate All Tasks"
+    }
+  ]
+}
