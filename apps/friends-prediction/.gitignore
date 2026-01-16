@@ -1,0 +1,21 @@
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Azure configuration with sensitive data
+azure-config.json
+azure-static-web-config.json
+
+# User secrets
+secrets.json
+
+# Database connection strings
+connection-strings.txt
+*.connection.json
+
+# Deployment tokens
+deployment-token.txt
+
+# GitHub workflows (if you want to commit it, remove this line)
+.github/
