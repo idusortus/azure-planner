@@ -7,10 +7,12 @@
 ## 📋 Quick Reference Index
 
 ### 🤖 AI Agents & Tools
+- [**Azure Resource Management Guide**](azure-resource-management-guide.md) - 🆕 **GitHub Copilot can now create & manage your Azure resources!**
 - [**BudgetFriendlyAzureAdvisor Agent**](budget-friendly-azure-advisor-agent.md) - AI agent for Azure research and cost optimization
 - [**Quick Start: Agent Setup**](quick-start-agent.md) - Get the agent running in 5 minutes
 - [**Using with GitHub Copilot**](using-agent-with-github-copilot.md) - MCP server integration for natural AI assistance
 - [**Corporate Security Workaround**](corporate-security-workaround.md) - Running .NET apps in restricted environments
+- [**Deployed Resources Tracking**](deployed-resources.md) - Live inventory of all created Azure resources
 
 ### Database Services
 - [**Azure SQL Database Free Tier**](azure-sql-free-tier.md) - Complete guide to free SQL databases with multi-database architecture

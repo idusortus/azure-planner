@@ -3,7 +3,7 @@
     "azure-advisor": {
       "command": "dotnet",
       "args": [
-        "c:\\dev\\tools\\az-devops\\src\\BudgetFriendlyAzureAdvisor\\bin\\Release\\net10.0\\BudgetFriendlyAzureAdvisor.dll",
+        "c:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\bin\\Release\\net10.0\\BudgetFriendlyAzureAdvisor.dll",
         "--mcp"
       ],
       "name": "BudgetFriendlyAzureAdvisor",

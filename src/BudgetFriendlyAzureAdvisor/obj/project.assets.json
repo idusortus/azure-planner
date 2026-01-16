@@ -589,10 +589,10 @@
           }
         }
       },
-      "ModelContextProtocol/0.5.0-preview.1": {
+      "ModelContextProtocol/0.6.0-preview.1": {
         "type": "package",
         "dependencies": {
-          "ModelContextProtocol.Core": "0.5.0-preview.1"
+          "ModelContextProtocol.Core": "0.6.0-preview.1"
         },
         "compile": {
           "lib/net10.0/ModelContextProtocol.dll": {
@@ -605,10 +605,10 @@
           }
         }
       },
-      "ModelContextProtocol.Core/0.5.0-preview.1": {
+      "ModelContextProtocol.Core/0.6.0-preview.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.AI.Abstractions": "10.0.0"
+          "Microsoft.Extensions.AI.Abstractions": "10.1.1"
         },
         "compile": {
           "lib/net10.0/ModelContextProtocol.Core.dll": {
@@ -1528,10 +1528,10 @@
         "microsoft.identitymodel.validators.nuspec"
       ]
     },
-    "ModelContextProtocol/0.5.0-preview.1": {
-      "sha512": "QJpuNEnMZLJmvASbZ2nvMqENTZk3HYF83IihoHs3EJ5vTlz4sYjji9bXh2HP5UxpXIdHGn0iuHu0X2Tpq2zilw==",
+    "ModelContextProtocol/0.6.0-preview.1": {
+      "sha512": "onUtGV9yny1rFZQ1qGUp6XPJBB2VxvWXvEioq8+/8hYOX6zEoc/Mc4tX8u7KRhU1mLss48jMh5DHFBMKifMiVw==",
       "type": "package",
-      "path": "modelcontextprotocol/0.5.0-preview.1",
+      "path": "modelcontextprotocol/0.6.0-preview.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1545,14 +1545,14 @@
         "lib/netstandard2.0/ModelContextProtocol.dll",
         "lib/netstandard2.0/ModelContextProtocol.xml",
         "logo.png",
-        "modelcontextprotocol.0.5.0-preview.1.nupkg.sha512",
+        "modelcontextprotocol.0.6.0-preview.1.nupkg.sha512",
         "modelcontextprotocol.nuspec"
       ]
     },
-    "ModelContextProtocol.Core/0.5.0-preview.1": {
-      "sha512": "33V1Druluweou6x2LN6MSMbhiwHOYZxTUEJ1okFKjYDRIthctTVe0EJi//nifl4MRld2b5D5LnuV9sezz54p6g==",
+    "ModelContextProtocol.Core/0.6.0-preview.1": {
+      "sha512": "vjpbeJL7O4kNAgwv6wZtqlAAUX/tWaYLtbBzENDablIQfI1bH2tYTD/eK/6JvxP+Qp1H/lXaMvuRM6wohAzauA==",
       "type": "package",
-      "path": "modelcontextprotocol.core/0.5.0-preview.1",
+      "path": "modelcontextprotocol.core/0.6.0-preview.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1567,7 +1567,7 @@
         "lib/netstandard2.0/ModelContextProtocol.Core.dll",
         "lib/netstandard2.0/ModelContextProtocol.Core.xml",
         "logo.png",
-        "modelcontextprotocol.core.0.5.0-preview.1.nupkg.sha512",
+        "modelcontextprotocol.core.0.6.0-preview.1.nupkg.sha512",
         "modelcontextprotocol.core.nuspec"
       ]
     },
@@ -1839,33 +1839,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\u320651\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\iduso\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\dev\\tools\\az-devops\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
+      "projectUniqueName": "C:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
       "projectName": "BudgetFriendlyAzureAdvisor",
-      "projectPath": "C:\\dev\\tools\\az-devops\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
-      "packagesPath": "C:\\Users\\u320651\\.nuget\\packages\\",
-      "outputPath": "C:\\dev\\tools\\az-devops\\src\\BudgetFriendlyAzureAdvisor\\obj\\",
+      "projectPath": "C:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
+      "packagesPath": "C:\\Users\\iduso\\.nuget\\packages\\",
+      "outputPath": "C:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\u320651\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\iduso\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://faedevops.oshkoshglobal.com/FaeITCollection/_packaging/FaeDevopsNuget/nuget/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net10.0": {
