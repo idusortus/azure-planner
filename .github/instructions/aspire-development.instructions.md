@@ -1,0 +1,187 @@
+---
+applyTo: "**/*.cs,**/*.csproj,**/appsettings*.json"
+---
+
+# .NET Aspire Development Instructions
+
+**Purpose**: Instructions for GitHub Copilot when developing Aspire-based POC applications
+
+## Framework Version
+
+**IMPORTANT**: Use .NET 10 for all Aspire projects. The Aspire templates may default to `net9.0`, but .NET 10 is fully supported and should be used for consistency.
+
+When creating new projects, ensure all `.csproj` files target `net10.0`:
+```xml
+<TargetFramework>net10.0</TargetFramework>
+```
+
+## Configuration Flow
+
+Infrastructure scripts in `apps/{poc-name}/` generate configuration files:
+- `azure-config.json` - Database and resource details
+- `azure-static-web-config.json` - Static Web App configuration
+- `.env.local` - Connection strings and secrets
+
+Run `copy-config.sh` in the Aspire solution folder to propagate these configs to the API's `appsettings.Development.json`.
+
+## Solution Structure
+
+Standard Aspire solution layout:
+```
+{PocName}.sln
+src/
+  {PocName}.AppHost/           # Orchestration
+  {PocName}.ServiceDefaults/   # Shared configs
+  {PocName}.Api/               # .NET WebAPI
+  {PocName}.Web/               # Static files (wwwroot/)
+```
+
+## AppHost Configuration
+
+**Program.cs pattern**:
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Local SQL Server for development
+var sqlServer = builder.AddSqlServer("sql")
+    .WithLifetime(ContainerLifetime.Persistent);
+var database = sqlServer.AddDatabase("appdb");
+
+// API with database reference
+var api = builder.AddProject<Projects.{PocName}_Api>("api")
+    .WithReference(database)
+    .WithExternalHttpEndpoints();
+
+// Web frontend
+builder.AddProject<Projects.{PocName}_Web>("web")
+    .WithReference(api)
+    .WithExternalHttpEndpoints();
+
+builder.Build().Run();
+```
+
+## API Configuration
+
+### Required Packages
+```xml
+<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
+<PackageReference Include="Azure.Identity" />
+<PackageReference Include="Azure.Security.KeyVault.Secrets" />
+```
+
+### DbContext with Serverless Resiliency
+```csharp
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlOptions => sqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 5,
+            maxRetryDelay: TimeSpan.FromSeconds(30),
+            errorNumbersToAdd: null));
+});
+```
+
+### CORS Configuration
+```csharp
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins(
+            "https://localhost:5001",
+            "https://*.azurestaticapps.net")
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
+```
+
+### Health Checks
+```csharp
+builder.Services.AddHealthChecks()
+    .AddDbContextCheck<AppDbContext>();
+
+// In app configuration
+app.MapHealthChecks("/health");
+```
+
+### Connection String Pattern
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "TO_BE_PROVIDED"
+  }
+}
+```
+
+## Web Project (Static Files)
+
+**Program.cs**:
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+app.MapFallbackToFile("index.html");
+
+app.Run();
+```
+
+## EF Core Migrations
+
+```bash
+# Create migration
+dotnet ef migrations add {MigrationName} --project src/{PocName}.Api
+
+# Apply locally
+dotnet ef database update --project src/{PocName}.Api
+
+# Apply to Azure SQL
+dotnet ef database update --project src/{PocName}.Api --connection "{connection-string}"
+```
+
+## Local Development
+
+```bash
+# Run Aspire
+dotnet run --project src/{PocName}.AppHost
+
+# Aspire Dashboard: http://localhost:15888
+```
+
+## Azure Deployment
+
+```bash
+# Initialize
+azd init
+# Select existing resource group: {poc-name}
+
+# Deploy
+azd up
+
+# Update specific service
+azd deploy api
+```
+
+## Key Vault Integration
+
+```csharp
+// In Program.cs
+if (!builder.Environment.IsDevelopment())
+{
+    var keyVaultUri = builder.Configuration["KeyVault:VaultUri"];
+    builder.Configuration.AddAzureKeyVault(
+        new Uri(keyVaultUri),
+        new DefaultAzureCredential());
+}
+```
+
+## Cost Optimization
+
+- Container Apps: Consumption plan, min replicas = 0
+- SQL Database: Serverless with auto-pause
+- Always use retry logic for serverless database
+- Configure health checks for proper scaling

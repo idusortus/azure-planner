@@ -1,0 +1,13 @@
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\TodoApp.ServiceDefaults\bin\Debug\net9.0\TodoApp.ServiceDefaults.deps.json
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\TodoApp.ServiceDefaults\bin\Debug\net9.0\TodoApp.ServiceDefaults.dll
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\TodoApp.ServiceDefaults\bin\Debug\net9.0\TodoApp.ServiceDefaults.pdb
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\TodoApp.ServiceDefaults\obj\Debug\net9.0\TodoApp.ServiceDefaults.csproj.AssemblyReference.cache
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\TodoApp.ServiceDefaults\obj\Debug\net9.0\TodoApp.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\TodoApp.ServiceDefaults\obj\Debug\net9.0\TodoApp.ServiceDefaults.AssemblyInfoInputs.cache
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\TodoApp.ServiceDefaults\obj\Debug\net9.0\TodoApp.ServiceDefaults.AssemblyInfo.cs
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\TodoApp.ServiceDefaults\obj\Debug\net9.0\TodoApp.ServiceDefaults.csproj.CoreCompileInputs.cache
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\TodoApp.ServiceDefaults\obj\Debug\net9.0\TodoApp.ServiceDefaults.sourcelink.json
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\TodoApp.ServiceDefaults\obj\Debug\net9.0\TodoApp.ServiceDefaults.dll
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\TodoApp.ServiceDefaults\obj\Debug\net9.0\refint\TodoApp.ServiceDefaults.dll
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\TodoApp.ServiceDefaults\obj\Debug\net9.0\TodoApp.ServiceDefaults.pdb
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\TodoApp.ServiceDefaults\obj\Debug\net9.0\ref\TodoApp.ServiceDefaults.dll

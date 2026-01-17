@@ -6,6 +6,7 @@
 # Azure configuration with sensitive data
 azure-config.json
 azure-static-web-config.json
+azure-storage-config.json
 
 # User secrets
 secrets.json

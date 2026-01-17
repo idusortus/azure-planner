@@ -8,7 +8,7 @@
 
 Run these scripts in order to set up your Azure infrastructure:
 
-### 1. Database Setup
+### 1. Database Setup (Required)
 
 ```bash
 cd apps/friends-prediction
@@ -18,13 +18,13 @@ chmod +x setup-database.sh
 
 The script will:
 - ✅ Check Azure authentication
-- ✅ Create SQL Server (if needed)
+- ✅ Create SQL Server (if needed, in Shared RG)
 - ✅ Create database (idempotent)
 - ✅ Configure firewall rules
 - ✅ Generate connection strings
 - ✅ Create configuration files
 
-### 2. Static Web App Setup
+### 2. Static Web App Setup (Required)
 
 ```bash
 chmod +x setup-static-web-app.sh
@@ -32,13 +32,49 @@ chmod +x setup-static-web-app.sh
 ```
 
 The script will:
-- ✅ Create/verify resource group
+- ✅ Create dedicated resource group for POC
+- ✅ Auto-register Microsoft.Web provider if needed
 - ✅ Create Static Web App (free tier)
 - ✅ Generate deployment token
 - ✅ Create deployment configurations
 - ✅ Optionally create GitHub Actions workflow
 
-### 3. Configure Your Application
+### 3. Storage Account Setup (Optional)
+
+```bash
+chmod +x setup-storage.sh
+./setup-storage.sh
+```
+
+The script will:
+- ✅ Create Azure Storage Account (LRS, budget-friendly)
+- ✅ Create default blob containers (uploads, assets, backups)
+- ✅ Optionally enable static website hosting
+- ✅ Generate connection strings
+- ✅ Update configuration files
+
+**Skip if**: Your POC doesn't need blob storage, file uploads, or additional static hosting
+
+### 4. Container App (API) - Use Aspire
+
+For deploying your .NET WebAPI to Container Apps, use Aspire's built-in deployment:
+
+```bash
+# In your Aspire solution root
+azd init
+azd up
+```
+
+Aspire automatically handles:
+- Container App creation
+- Service configuration
+- Environment variables
+- Database connections
+- Service discovery
+
+**Don't create a separate script** - Aspire's orchestration manages this!
+
+### 5. Configure Your Application
 
 After running the setup script:
 
@@ -71,15 +107,36 @@ Resources will be documented in `azure-config.json` after running setup script.
 
 ## Scripts
 
-- `setup-database.sh` - Database and SQL Server setup (run first)
-- `setup-static-web-app.sh` - Static Web App setup (run second)
+### Setup Scripts (Run in Order)
+1. `setup-database.sh` - Database and SQL Server setup (Required)
+2. `setup-static-web-app.sh` - Static Web App and resource group (Required)
+3. `setup-storage.sh` - Azure Storage Account (Optional)
+
+### API Deployment
+Use Aspire's `azd up` instead of a custom script - handles Container Apps automatically
 
 ## Generated Files (git-ignored)
 
 - `azure-config.json` - Database configuration
 - `azure-static-web-config.json` - Static Web App configuration
+- `azure-storage-config.json` - Storage account configuration (if used)
 - `.env.local` - Environment variables for local development
 - `.github/workflows/azure-static-web-apps.yml` - Optional deployment workflow
+
+## Resource Group Strategy
+
+**Shared Resource Group** (`Shared`):
+- SQL Server (logical server)
+- Service Bus namespace
+- Other cross-POC infrastructure
+
+**Per-POC Resource Group** (`friends-prediction`):
+- Static Web App
+- Container App (API)
+- Storage Account
+- SQL Database (on shared SQL Server)
+
+**Benefit**: Delete entire POC with one command: `az group delete --name friends-prediction`
 
 ## Manual Setup (Alternative)
 

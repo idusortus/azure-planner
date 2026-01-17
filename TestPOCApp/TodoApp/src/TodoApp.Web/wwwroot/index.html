@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App - Azure POC</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 TODO App</h1>
+            <p class="subtitle">Azure POC - .NET Aspire + Vanilla JS</p>
+        </header>
+
+        <main>
+            <!-- Add Todo Form -->
+            <form id="add-todo-form" class="add-form">
+                <input type="text" id="todo-title" placeholder="What needs to be done?" required>
+                <input type="text" id="todo-description" placeholder="Description (optional)">
+                <button type="submit">Add</button>
+            </form>
+
+            <!-- Filter Buttons -->
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+
+            <!-- Todo List -->
+            <div id="todo-list" class="todo-list">
+                <!-- Todos will be rendered here -->
+            </div>
+
+            <!-- Status Bar -->
+            <div id="status-bar" class="status-bar">
+                <span id="item-count">0 items</span>
+                <span id="api-status" class="api-status">🔄 Connecting...</span>
+            </div>
+        </main>
+
+        <footer>
+            <p>Built with ❤️ using .NET Aspire + Azure SQL Serverless</p>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
