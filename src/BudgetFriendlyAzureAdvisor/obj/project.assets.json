@@ -170,11 +170,11 @@
           }
         }
       },
-      "Microsoft.Agents.Authentication/1.4.35-beta": {
+      "Microsoft.Agents.Authentication/1.4.36-beta": {
         "type": "package",
         "dependencies": {
           "Azure.Identity": "1.17.1",
-          "Microsoft.Agents.Core": "1.4.35-beta",
+          "Microsoft.Agents.Core": "1.4.36-beta",
           "System.Configuration.ConfigurationManager": "10.0.1",
           "System.IdentityModel.Tokens.Jwt": "8.15.0"
         },
@@ -189,14 +189,14 @@
           }
         }
       },
-      "Microsoft.Agents.Builder/1.4.35-beta": {
+      "Microsoft.Agents.Builder/1.4.36-beta": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Agents.Authentication": "1.4.35-beta",
-          "Microsoft.Agents.Connector": "1.4.35-beta",
-          "Microsoft.Agents.Core": "1.4.35-beta",
-          "Microsoft.Agents.Storage": "1.4.35-beta",
-          "Microsoft.Agents.Storage.Transcript": "1.4.35-beta",
+          "Microsoft.Agents.Authentication": "1.4.36-beta",
+          "Microsoft.Agents.Connector": "1.4.36-beta",
+          "Microsoft.Agents.Core": "1.4.36-beta",
+          "Microsoft.Agents.Storage": "1.4.36-beta",
+          "Microsoft.Agents.Storage.Transcript": "1.4.36-beta",
           "System.IdentityModel.Tokens.Jwt": "8.15.0",
           "System.Memory.Data": "10.0.1"
         },
@@ -211,11 +211,11 @@
           }
         }
       },
-      "Microsoft.Agents.Connector/1.4.35-beta": {
+      "Microsoft.Agents.Connector/1.4.36-beta": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Agents.Authentication": "1.4.35-beta",
-          "Microsoft.Agents.Core": "1.4.35-beta",
+          "Microsoft.Agents.Authentication": "1.4.36-beta",
+          "Microsoft.Agents.Core": "1.4.36-beta",
           "Microsoft.Bcl.Memory": "10.0.1",
           "System.IdentityModel.Tokens.Jwt": "8.15.0",
           "System.Runtime.Caching": "10.0.1"
@@ -231,7 +231,7 @@
           }
         }
       },
-      "Microsoft.Agents.Core/1.4.35-beta": {
+      "Microsoft.Agents.Core/1.4.36-beta": {
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.Agents.Core.dll": {
@@ -244,10 +244,10 @@
           }
         }
       },
-      "Microsoft.Agents.Hosting.AspNetCore/1.4.35-beta": {
+      "Microsoft.Agents.Hosting.AspNetCore/1.4.36-beta": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Agents.Builder": "1.4.35-beta",
+          "Microsoft.Agents.Builder": "1.4.36-beta",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.22",
           "Microsoft.IdentityModel.Validators": "8.15.0",
           "System.IdentityModel.Tokens.Jwt": "8.15.0"
@@ -266,10 +266,10 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Microsoft.Agents.Storage/1.4.35-beta": {
+      "Microsoft.Agents.Storage/1.4.36-beta": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Agents.Core": "1.4.35-beta"
+          "Microsoft.Agents.Core": "1.4.36-beta"
         },
         "compile": {
           "lib/net8.0/Microsoft.Agents.Storage.dll": {
@@ -282,11 +282,11 @@
           }
         }
       },
-      "Microsoft.Agents.Storage.Transcript/1.4.35-beta": {
+      "Microsoft.Agents.Storage.Transcript/1.4.36-beta": {
         "type": "package",
         "dependencies": {
           "Azure.Storage.Blobs": "12.26.0",
-          "Microsoft.Agents.Core": "1.4.35-beta",
+          "Microsoft.Agents.Core": "1.4.36-beta",
           "Microsoft.Bcl.AsyncInterfaces": "10.0.1"
         },
         "compile": {
@@ -968,10 +968,10 @@
         "microsoft.agents.ai.azureai.nuspec"
       ]
     },
-    "Microsoft.Agents.Authentication/1.4.35-beta": {
-      "sha512": "K/VA6DhlIw/fANvMNQdK4md6eVR1jjw3NuwWL3EVsFgRcSrq1tIjvsQmWM3ys9qWT2E6/FX3fUc8EwevO7gcQg==",
+    "Microsoft.Agents.Authentication/1.4.36-beta": {
+      "sha512": "0ruOhDOCFbticNTGfB/0c7U5Id+LwIpCUduhx7vv/UKm2eNycjvCW2eo2er5mIqseKxYwcZ8X/5W2pwDHDuPfg==",
       "type": "package",
-      "path": "microsoft.agents.authentication/1.4.35-beta",
+      "path": "microsoft.agents.authentication/1.4.36-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -981,14 +981,14 @@
         "lib/net8.0/Microsoft.Agents.Authentication.xml",
         "lib/netstandard2.0/Microsoft.Agents.Authentication.dll",
         "lib/netstandard2.0/Microsoft.Agents.Authentication.xml",
-        "microsoft.agents.authentication.1.4.35-beta.nupkg.sha512",
+        "microsoft.agents.authentication.1.4.36-beta.nupkg.sha512",
         "microsoft.agents.authentication.nuspec"
       ]
     },
-    "Microsoft.Agents.Builder/1.4.35-beta": {
-      "sha512": "lxvV2cIDuyx7s0ZQYh+LNCCJvihyrmFjzQ9N6j04xemPw8qEgyAX6iegbfoENHaAyj6P1GVMKBOgJHO8urYQ8g==",
+    "Microsoft.Agents.Builder/1.4.36-beta": {
+      "sha512": "/Vis49XGrDjej+MvLqvsF/l1T59z98bpcjf8+qBfjWgI7a380yVDQa5ylXYHMFnxb9ZclAvBNMyKgtWqNYKx9g==",
       "type": "package",
-      "path": "microsoft.agents.builder/1.4.35-beta",
+      "path": "microsoft.agents.builder/1.4.36-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -998,14 +998,14 @@
         "lib/net8.0/Microsoft.Agents.Builder.xml",
         "lib/netstandard2.0/Microsoft.Agents.Builder.dll",
         "lib/netstandard2.0/Microsoft.Agents.Builder.xml",
-        "microsoft.agents.builder.1.4.35-beta.nupkg.sha512",
+        "microsoft.agents.builder.1.4.36-beta.nupkg.sha512",
         "microsoft.agents.builder.nuspec"
       ]
     },
-    "Microsoft.Agents.Connector/1.4.35-beta": {
-      "sha512": "xWiwNE6mJ7atqOKbH16bxgKVIOvjwnEPRdNwil5hjaRKINDzbHCoOaK/xehmOoGFavjz5zVffiLHplvmuUhWfg==",
+    "Microsoft.Agents.Connector/1.4.36-beta": {
+      "sha512": "WPb0oI4g1WD8IzUPjZgdwWU6UNuRAgFMW+OzAXSQ7krB9jADjkCr79r3vMWf5/Nq1Bx4CUEyzirIPNJrPsrBdQ==",
       "type": "package",
-      "path": "microsoft.agents.connector/1.4.35-beta",
+      "path": "microsoft.agents.connector/1.4.36-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1015,14 +1015,14 @@
         "lib/net8.0/Microsoft.Agents.Connector.xml",
         "lib/netstandard2.0/Microsoft.Agents.Connector.dll",
         "lib/netstandard2.0/Microsoft.Agents.Connector.xml",
-        "microsoft.agents.connector.1.4.35-beta.nupkg.sha512",
+        "microsoft.agents.connector.1.4.36-beta.nupkg.sha512",
         "microsoft.agents.connector.nuspec"
       ]
     },
-    "Microsoft.Agents.Core/1.4.35-beta": {
-      "sha512": "UExLdwlnM4W7d13VQ2uqH3JsKlUiLAqoc72Qa9EuOPI9kXJWmzkmOmJtAKadhrsexJzzM8rWLmx3//NPEsrqwg==",
+    "Microsoft.Agents.Core/1.4.36-beta": {
+      "sha512": "cnrLJTzcKJuyPdakMHBq9oBe/VqYr6QYARb85ZxvSt5vuD/V7bLcgTHkXrFxi4pznw0tnNM/IZOSjCfZBNXE9g==",
       "type": "package",
-      "path": "microsoft.agents.core/1.4.35-beta",
+      "path": "microsoft.agents.core/1.4.36-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1033,14 +1033,14 @@
         "lib/net8.0/Microsoft.Agents.Core.xml",
         "lib/netstandard2.0/Microsoft.Agents.Core.dll",
         "lib/netstandard2.0/Microsoft.Agents.Core.xml",
-        "microsoft.agents.core.1.4.35-beta.nupkg.sha512",
+        "microsoft.agents.core.1.4.36-beta.nupkg.sha512",
         "microsoft.agents.core.nuspec"
       ]
     },
-    "Microsoft.Agents.Hosting.AspNetCore/1.4.35-beta": {
-      "sha512": "Pg0MGil+MdKuAD/8vaj3zXTG3cAdxrX0lbsS2u5ULoqAcOA4E7NWwU5JcTO8T6OEHN/br8UdnzvnWU4K9Y3JzQ==",
+    "Microsoft.Agents.Hosting.AspNetCore/1.4.36-beta": {
+      "sha512": "gON+biGmT1ZQC7yUkVKPPCS5fqIy7/Dgrt5QrmD5/GVIVdZv16dCycXcEJAOb3bXh4MAtNt2ILaYhhYOIgqprQ==",
       "type": "package",
-      "path": "microsoft.agents.hosting.aspnetcore/1.4.35-beta",
+      "path": "microsoft.agents.hosting.aspnetcore/1.4.36-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1048,14 +1048,14 @@
         "agent_icon.png",
         "lib/net8.0/Microsoft.Agents.Hosting.AspNetCore.dll",
         "lib/net8.0/Microsoft.Agents.Hosting.AspNetCore.xml",
-        "microsoft.agents.hosting.aspnetcore.1.4.35-beta.nupkg.sha512",
+        "microsoft.agents.hosting.aspnetcore.1.4.36-beta.nupkg.sha512",
         "microsoft.agents.hosting.aspnetcore.nuspec"
       ]
     },
-    "Microsoft.Agents.Storage/1.4.35-beta": {
-      "sha512": "M2gcxOZ23fFPSRQ0uzaJhtMd9omnpb/GatSeOAwN8yWHni9DZ6qe/tXXSFsrNXSqxHRlv+8LR7EHGK2S4JxHlA==",
+    "Microsoft.Agents.Storage/1.4.36-beta": {
+      "sha512": "I8Dflt9yJKQF1GKGPGl6/SdOkYBrXiPHs3soMpjQHNVXfHxgsaIa6l1JSExqHY9nglglTqTxm2TAZVZN41jEIg==",
       "type": "package",
-      "path": "microsoft.agents.storage/1.4.35-beta",
+      "path": "microsoft.agents.storage/1.4.36-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1065,14 +1065,14 @@
         "lib/net8.0/Microsoft.Agents.Storage.xml",
         "lib/netstandard2.0/Microsoft.Agents.Storage.dll",
         "lib/netstandard2.0/Microsoft.Agents.Storage.xml",
-        "microsoft.agents.storage.1.4.35-beta.nupkg.sha512",
+        "microsoft.agents.storage.1.4.36-beta.nupkg.sha512",
         "microsoft.agents.storage.nuspec"
       ]
     },
-    "Microsoft.Agents.Storage.Transcript/1.4.35-beta": {
-      "sha512": "omnxP5fLkiJ2Eb68VtAlq3P3QZrt2F+JMfKeeutl0ZOpZvmXumZTKLTPb/+N1QCYdsTinWahQVjlFXssbSXKVg==",
+    "Microsoft.Agents.Storage.Transcript/1.4.36-beta": {
+      "sha512": "cXqezLWjFesItGHIDDd03hrNfFdw6eyrbe5XBDzSsSKWNegRaDxm258VsMNxVaCvd/SRswiYqrG8bkIIbdoT5w==",
       "type": "package",
-      "path": "microsoft.agents.storage.transcript/1.4.35-beta",
+      "path": "microsoft.agents.storage.transcript/1.4.36-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1082,7 +1082,7 @@
         "lib/net8.0/Microsoft.Agents.Storage.Transcript.xml",
         "lib/netstandard2.0/Microsoft.Agents.Storage.Transcript.dll",
         "lib/netstandard2.0/Microsoft.Agents.Storage.Transcript.xml",
-        "microsoft.agents.storage.transcript.1.4.35-beta.nupkg.sha512",
+        "microsoft.agents.storage.transcript.1.4.36-beta.nupkg.sha512",
         "microsoft.agents.storage.transcript.nuspec"
       ]
     },

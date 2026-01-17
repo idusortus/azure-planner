@@ -13,9 +13,10 @@ NC='\033[0m' # No Color
 
 # Configuration
 APP_NAME="friends-prediction"
-RESOURCE_GROUP="${RESOURCE_GROUP:-Shared}"  # Default to Shared, can override
+RESOURCE_GROUP="${RESOURCE_GROUP:-$APP_NAME}"  # Default to dedicated RG per POC
 LOCATION="centralus"
 STATIC_WEB_APP_NAME="${APP_NAME}-web"
+STORAGE_ACCOUNT_NAME="${APP_NAME//-/}storage"  # Remove hyphens for storage account name
 SKU="Free"
 
 # GitHub repo settings (optional - can be added later via portal)
@@ -48,23 +49,41 @@ echo -e "${GREEN}✓ Authenticated as: ${ACCOUNT_NAME}${NC}"
 echo -e "${GREEN}✓ Subscription: ${SUBSCRIPTION_ID}${NC}"
 echo ""
 
+# Check and register Microsoft.Web provider if needed
+echo -e "${YELLOW}🔍 Checking Microsoft.Web provider registration...${NC}"
+PROVIDER_STATE=$(az provider show --namespace Microsoft.Web --query "registrationState" -o tsv 2>/dev/null || echo "NotRegistered")
+
+if [ "$PROVIDER_STATE" != "Registered" ]; then
+    echo -e "${YELLOW}⚠️  Microsoft.Web provider not registered${NC}"
+    echo -e "${YELLOW}Registering provider (this may take 1-2 minutes)...${NC}"
+    
+    az provider register --namespace Microsoft.Web --wait
+    
+    echo -e "${GREEN}✓ Microsoft.Web provider registered${NC}"
+else
+    echo -e "${GREEN}✓ Microsoft.Web provider already registered${NC}"
+fi
+echo ""
+
 # Ask about resource group preference
 echo -e "${YELLOW}Resource Group Configuration${NC}"
-echo -e "  Current setting: ${RESOURCE_GROUP}"
 echo ""
 echo -e "Options:"
-echo -e "  1) Use 'Shared' resource group (recommended for POCs)"
-echo -e "  2) Create dedicated '${APP_NAME}' resource group"
+echo -e "  1) Create dedicated '${APP_NAME}' resource group (recommended - easier cleanup)"
+echo -e "  2) Use 'Shared' resource group (for shared infrastructure only)"
+echo ""
+echo -e "${BLUE}Note: Shared resources (SQL Server, Service Bus) should stay in 'Shared' RG${NC}"
+echo -e "${BLUE}      POC apps (Static Web App, Container App, Storage) get dedicated RG${NC}"
 echo ""
 read -p "Enter choice (1 or 2) [default: 1]: " RG_CHOICE
 RG_CHOICE=${RG_CHOICE:-1}
 
 if [ "$RG_CHOICE" == "2" ]; then
-    RESOURCE_GROUP="$APP_NAME"
-    echo -e "${YELLOW}Will use dedicated resource group: ${RESOURCE_GROUP}${NC}"
-else
     RESOURCE_GROUP="Shared"
     echo -e "${YELLOW}Will use shared resource group: ${RESOURCE_GROUP}${NC}"
+else
+    RESOURCE_GROUP="$APP_NAME"
+    echo -e "${YELLOW}Will use dedicated resource group: ${RESOURCE_GROUP}${NC}"
 fi
 echo ""
 
