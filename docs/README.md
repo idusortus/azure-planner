@@ -2,7 +2,28 @@
 
 **Purpose:** Cost-optimized Azure service research and implementation guides for proof-of-concept projects.
 
-**Last Updated:** January 13, 2026
+**Last Updated:** January 2025
+
+---
+
+## 🚀 POC Deployment Documentation
+
+> **START HERE** for deploying .NET Aspire applications to Azure
+
+| Document | Purpose |
+|----------|---------|
+| [**📋 CHECKLIST**](poc-deployment/CHECKLIST.md) | Quick step-by-step reference (5 phases, ~75 min total) |
+| [**📖 GUIDE**](poc-deployment/GUIDE.md) | Comprehensive explanations and detailed instructions |
+| [**🏛️ DECISIONS**](poc-deployment/DECISIONS.md) | Architecture Decision Records (ADRs) with rationale |
+| [**📁 Index**](poc-deployment/README.md) | Overview and architecture diagram |
+
+**Stack:** .NET 10 Aspire • Azure SQL Serverless • Container Apps • Static Web Apps • ACR
+
+**Cost Target:** $5-10/month for all POCs combined
+
+**Copilot Prompt:** Use [`.github/prompts/create-new-poc.prompt.md`](../.github/prompts/create-new-poc.prompt.md) to create new POCs
+
+---
 
 ## 📋 Quick Reference Index
 

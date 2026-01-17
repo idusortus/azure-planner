@@ -5,9 +5,9 @@
 
 // Configuration - will be updated to use Aspire service discovery
 const CONFIG = {
-    // In production, this will be the API endpoint from Aspire
-    // For local dev with Aspire, the endpoint is injected via environment
-    apiBaseUrl: window.API_BASE_URL || '/api/todos'
+    // API URL is injected via /config.js endpoint from the Web server
+    // This allows Aspire to provide the correct service URL
+    apiBaseUrl: window.API_BASE_URL || 'http://localhost:5001/api/todos'
 };
 
 // State
@@ -40,21 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * Discover the API URL from Aspire service discovery
- * In Aspire, the API URL is typically passed via configuration
+ * The URL is injected via /config.js which is served by the Web backend
  */
 function discoverApiUrl() {
-    // Check for environment-injected URL (from Aspire)
-    const apiElement = document.querySelector('meta[name="api-url"]');
-    if (apiElement) {
-        CONFIG.apiBaseUrl = apiElement.content;
-    }
-    
-    // If running standalone, try to detect the API
-    // For development, we'll use the services endpoint pattern
-    if (!CONFIG.apiBaseUrl.startsWith('http')) {
-        // Try to find API service - adjust port as needed
-        CONFIG.apiBaseUrl = 'http://localhost:5000/api/todos';
-    }
+    console.log('API Base URL:', CONFIG.apiBaseUrl);
 }
 
 /**

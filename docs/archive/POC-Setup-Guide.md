@@ -228,76 +228,147 @@ async function fetchData() {
 
 ## Phase 3: Local Development
 
-### Step 1: Run Aspire
+### Step 1: Copy Azure Configuration
+
+Run the configuration script to copy credentials from infrastructure folder:
 
 ```bash
-dotnet run --project src/{PocName}.AppHost
+cd TestPOCApp/{PocName}
+chmod +x copy-config.sh
+./copy-config.sh
 ```
 
-### Step 2: Access Services
+This copies:
+- Connection strings from `apps/{poc-name}/.env.local`
+- Azure resource details to solution folder
+- Updates `appsettings.Development.json` with actual DB password
 
-- **Aspire Dashboard**: http://localhost:15888
-- **API**: https://localhost:7001 (or assigned port)
-- **Web**: https://localhost:5001 (or assigned port)
-
-### Step 3: Apply Migrations
+### Step 2: Apply Database Migrations
 
 ```bash
-# Create migration
-dotnet ef migrations add InitialCreate --project src/{PocName}.Api
-
-# Apply to local SQL container
-dotnet ef database update --project src/{PocName}.Api
+cd src/{PocName}.Api
+dotnet ef migrations add InitialCreate
+dotnet ef database update
 ```
 
-### Step 4: Test
+This creates tables in your Azure SQL Database (serverless will wake up automatically).
 
-1. Open Aspire Dashboard
-2. Verify all services are running
-3. Test API endpoints
-4. Test frontend functionality
-5. Verify database operations
+### Step 3: Run Aspire
+
+```bash
+cd TestPOCApp/{PocName}
+dotnet run --project {PocName}.AppHost
+```
+
+### Step 4: Access Services
+
+The Aspire dashboard will open automatically (usually at https://localhost:17135).
+
+From the dashboard:
+- View all running services (API, Web)
+- Check logs and traces
+- Monitor health checks
+- Get service URLs
+
+**Typical Service URLs**:
+- **Aspire Dashboard**: https://localhost:17135
+- **API**: http://localhost:XXXX (check dashboard)
+- **Web**: http://localhost:YYYY (check dashboard)
+
+### Step 5: Test Functionality
+
+1. ✅ Open the Web frontend URL from Aspire dashboard
+2. ✅ Verify API connection (check browser console for errors)
+3. ✅ Test CRUD operations
+4. ✅ Verify data persists to Azure SQL Database
+5. ✅ Check Aspire dashboard for telemetry and logs
+
+**Common Issues**:
+- **CORS errors**: API must allow frontend origin
+- **Connection refused**: Check service URLs in Aspire dashboard
+- **DB timeout**: Serverless DB may take 30-60s to wake up (retry logic handles this)
 
 ---
 
 ## Phase 4: Azure Deployment
 
-### Step 1: Update Configuration
+### Prerequisites
 
-Copy connection strings from `apps/{poc-name}/.env.local` to:
-- `src/{PocName}.Api/appsettings.json`
-- Or Azure Key Vault (preferred)
+Ensure you have:
+- ✅ Azure CLI installed (`az --version`)
+- ✅ Azure Developer CLI installed (`azd version`)
+- ✅ Authenticated with Azure (`az login`)
+- ✅ Local testing completed successfully
 
-### Step 2: Initialize Azure Developer CLI
+### Step 1: Initialize Azure Developer CLI
 
 ```bash
+cd TestPOCApp/{PocName}
 azd init
 ```
 
-Select:
+**Configuration prompts**:
 - Environment name: `dev` (or `prod`)
-- Use existing resource group: `{poc-name}`
-- Location: `centralus`
+- Select subscription: Choose your Azure subscription
+- Select location: `centralus`
 
-### Step 3: Deploy
+### Step 2: Configure Azure Resources
+
+The `azd` tool needs to know about your existing resources:
+
+```bash
+# Set environment variables for existing resources
+azd env set AZURE_RESOURCE_GROUP "{poc-name}"
+azd env set AZURE_SQL_SERVER "dev-wiscodev"
+azd env set AZURE_SQL_DATABASE "{poc-name}-db"
+```
+
+### Step 3: Deploy to Azure
 
 ```bash
 azd up
 ```
 
 This automatically:
-- Builds Docker images
-- Pushes to Azure Container Registry
-- Deploys API to Container Apps
-- Deploys frontend to Static Web Apps
-- Configures networking and environment variables
+- ✅ Builds Docker images for API
+- ✅ Pushes to Azure Container Registry (creates if needed)
+- ✅ Deploys API to Container Apps (Consumption plan)
+- ✅ Deploys frontend to existing Static Web App
+- ✅ Configures environment variables
+- ✅ Sets up networking and service connections
 
-### Step 4: Verify
+**Expected duration**: 5-10 minutes
 
-1. Check Azure Portal for resources
-2. Test API endpoint (Container App URL)
-3. Test frontend (Static Web App URL)
-4. Verify database connectivity
+### Step 4: Verify Deployment
+
+1. **Check Container Apps**:
+   ```bash
+   az containerapp list --resource-group {poc-name} --output table
+   ```
+
+2. **Get API URL**:
+   ```bash
+   az containerapp show --name {poc-name}-api --resource-group {poc-name} --query properties.configuration.ingress.fqdn -o tsv
+   ```
+
+3. **Test API endpoint**:
+   ```bash
+   curl https://{api-url}/health
+   ```
+
+4. **Access Static Web App**:
+   - URL is in `apps/{poc-name}/azure-static-web-config.json`
+   - Should automatically connect to deployed API
+
+### Step 5: Monitor and Debug
+
+```bash
+# View Container App logs
+az containerapp logs show --name {poc-name}-api --resource-group {poc-name} --follow
+
+# Check application insights (if configured)
+az monitor app-insights component show --app {poc-name}-insights --resource-group {poc-name}
+```
 
 ---
 
@@ -391,3 +462,54 @@ Run `setup-budget-alert.sh` to create alerts at:
 - [ ] Azure Functions for serverless compute
 - [ ] Application Insights for monitoring
 - [ ] GitHub Actions CI/CD pipelines
+
+---
+
+## Appendix: Completed TODO App Example
+
+The TODO app was successfully deployed using this guide on January 17, 2026.
+
+### Live URLs
+
+| Component | URL |
+|-----------|-----|
+| **API** | https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io |
+| **Health Check** | https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io/health |
+| **Todos Endpoint** | https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io/api/todos |
+| **Frontend** | https://happy-desert-065eace10.6.azurestaticapps.net |
+
+### Resources Created
+
+| Resource | Type | Cost |
+|----------|------|------|
+| `todo-app` | Resource Group | $0 |
+| `todo-app-db` | Azure SQL Serverless | $0-5/month |
+| `todo-app-web` | Static Web App (Free) | $0/month |
+| `todoapp-env` | Container Apps Environment | $0/month |
+| `todoapp-api` | Container App | $0-2/month |
+| `wiscodevacr` | Container Registry (Basic) | ~$5/month |
+
+### Deployment Scripts Used
+
+```bash
+# 1. Infrastructure (from apps/todo-app/)
+./setup-database.sh
+./setup-static-web-app.sh
+
+# 2. Copy config to Aspire solution
+./copy-config.sh
+
+# 3. Deploy API (from TestPOCApp/TodoApp/)
+.\deploy-to-azure.ps1
+
+# 4. Deploy Frontend
+.\deploy-frontend.ps1
+```
+
+### Key Learnings
+
+1. **Container Registry**: Created a shared ACR (`wiscodevacr`) for all POCs to avoid per-POC registry costs
+2. **Admin credentials**: Used ACR admin credentials instead of managed identity for simplicity
+3. **Connection strings**: Passed directly as environment variables (consider Key Vault for production)
+4. **Scale to zero**: Container Apps with `minReplicas: 0` enables true serverless cost savings
+5. **Service discovery**: Frontend uses static `config.js` file with production API URL

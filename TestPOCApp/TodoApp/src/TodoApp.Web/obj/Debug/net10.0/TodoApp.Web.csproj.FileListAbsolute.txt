@@ -44,8 +44,6 @@ C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\
 C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
 C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\net10.0\scopedcss\bundle\TodoApp.Web.styles.css
 C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\net10.0\compressed\fodtppywdr-{0}-llj7pulvfh-llj7pulvfh.gz
-C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\net10.0\compressed\wbbv1uvesd-{0}-kvyclpbz0h-kvyclpbz0h.gz
-C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\net10.0\compressed\6u75db0cff-{0}-7ybwh3isz0-7ybwh3isz0.gz
 C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\net10.0\staticwebassets.build.json
 C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\net10.0\staticwebassets.development.json
@@ -57,3 +55,5 @@ C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\
 C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\net10.0\TodoApp.Web.pdb
 C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\net10.0\TodoApp.Web.genruntimeconfig.cache
 C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\net10.0\ref\TodoApp.Web.dll
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\net10.0\compressed\wbbv1uvesd-{0}-7hu8kx9m31-7hu8kx9m31.gz
+C:\dev\side-projects\azure-planner\TestPOCApp\TodoApp\src\TodoApp.Web\obj\Debug\net10.0\compressed\6u75db0cff-{0}-kizmzwjxps-kizmzwjxps.gz

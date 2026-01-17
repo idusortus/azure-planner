@@ -1,0 +1,50 @@
+# Sensitive configuration files
+*.env
+*.env.local
+.env.*.local
+**/sql-credentials.md
+
+# Azure configuration with secrets
+**/azure-config.json
+**/azure-static-web-config.json
+**/azure-keyvault-config.json
+**/azure-storage-config.json
+**/azure-budget-config.json
+
+# Manual setup notes (may contain secrets)
+**/SETUP_NOTES.md
+
+# User secrets
+secrets.json
+appsettings.Development.json
+
+# Connection strings
+connection-strings.txt
+*.connection.json
+
+# Deployment tokens
+deployment-token.txt
+
+# .NET build artifacts
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Test results
+TestResults/
+*.trx
+
+# NuGet
+*.nupkg
+packages/
+.nuget/

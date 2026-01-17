@@ -1,41 +1,59 @@
 # TODO App - Aspire Solution
 
 **Location**: `/TestPOCApp/TodoApp`  
-**Framework**: .NET 9 Aspire  
-**Status**: Ready for local testing
+**Framework**: .NET 10 Aspire  
+**Status**: ✅ DEPLOYED TO AZURE
 
-## Quick Start
+## 🌐 Live URLs
 
-### 1. Set Database Password
+| Component | URL |
+|-----------|-----|
+| **API** | https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io |
+| **Health Check** | https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io/health |
+| **Todos Endpoint** | https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io/api/todos |
+| **Frontend** | https://happy-desert-065eace10.6.azurestaticapps.net |
 
-Edit `src/TodoApp.Api/appsettings.Development.json` and replace `YOUR_PASSWORD_HERE` with your actual SQL Server password.
+## Quick Start (Local Development)
+
+### 1. Copy Configuration
+
+```bash
+chmod +x copy-config.sh
+./copy-config.sh
+```
+
+This copies database credentials and Azure resource details from `apps/todo-app/`.
 
 ### 2. Apply Database Migration
 
 ```bash
-cd TestPOCApp/TodoApp/src/TodoApp.Api
-
-# Set connection string (replace YOUR_PASSWORD with actual)
-export CONNECTION_STRING="Server=tcp:dev-wiscodev.database.windows.net,1433;Database=todo-app-db;User ID=sqladmin;Password=YOUR_PASSWORD;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
-
-# Apply migration
-dotnet ef database update --connection "$CONNECTION_STRING"
+cd src/TodoApp.Api
+dotnet ef database update
 ```
 
 ### 3. Run with Aspire
 
 ```bash
-cd TestPOCApp/TodoApp
+cd ../..
 dotnet run --project TodoApp.AppHost
 ```
 
-The Aspire Dashboard will open at: **http://localhost:15888**
+The Aspire Dashboard will open at: **https://localhost:17135** (or similar)
 
 ### 4. Access the App
 
-- **Frontend**: http://localhost:5000 (or check Aspire dashboard)
-- **API**: http://localhost:5001/api/todos (or check Aspire dashboard)
-- **Health**: http://localhost:5001/health
+Check the Aspire dashboard for service URLs:
+- **Frontend**: Click the "web" endpoint
+- **API**: Click the "api" endpoint (add `/api/todos` to path)
+- **Health**: API endpoint + `/health`
+
+## Local Testing - ✅ Verified Working
+
+- ✅ Database migration applied successfully
+- ✅ Aspire orchestration running
+- ✅ API serving at assigned port
+- ✅ Frontend connecting to API via service discovery
+- ✅ Full CRUD operations functional
 
 ## Project Structure
 
@@ -74,18 +92,46 @@ TodoApp/
 
 ## Deployment to Azure
 
-```bash
-# Initialize Azure Developer CLI
-azd init
+### Deploy API (Container Apps)
 
-# Deploy to Azure
-azd up
+```powershell
+# From TestPOCApp/TodoApp/
+.\deploy-to-azure.ps1
 ```
 
-This will deploy:
-- Container App for the API
-- Static Web App for the frontend (already created)
-- Connect to existing Azure SQL Database
+### Deploy Frontend (Static Web Apps)
+
+```powershell
+# From TestPOCApp/TodoApp/
+.\deploy-frontend.ps1
+```
+
+### Manual Deployment
+
+```bash
+# Build and push Docker image
+az acr login --name wiscodevacr
+docker build -t wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io/todoapp-api:latest -f src/TodoApp.Api/Dockerfile .
+docker push wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io/todoapp-api:latest
+
+# Deploy to Container Apps
+az containerapp update --name todoapp-api --resource-group todo-app --image wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io/todoapp-api:latest
+
+# Deploy frontend
+cd src/TodoApp.Web/wwwroot
+swa deploy . --deployment-token "[token from azure-static-web-config.json]"
+```
+
+## Azure Resources
+
+| Resource | Type | Location |
+|----------|------|----------|
+| `todo-app` | Resource Group | centralus |
+| `todo-app-db` | Azure SQL Database | Shared/dev-wiscodev |
+| `todo-app-web` | Static Web App | todo-app |
+| `todoapp-env` | Container Apps Environment | todo-app |
+| `todoapp-api` | Container App | todo-app |
+| `wiscodevacr` | Container Registry | Shared |
 
 ## Troubleshooting
 

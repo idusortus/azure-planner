@@ -1,0 +1,24 @@
+# Azure Developer CLI (azd) Configuration
+# This file defines how the TodoApp is deployed to Azure
+
+name: todoapp
+metadata:
+  template: todo-app@0.0.1-beta
+
+# Infrastructure as Code
+# Using existing Azure resources created by setup scripts
+infra:
+  provider: bicep
+  path: infra
+
+# Services to deploy
+services:
+  api:
+    project: ./src/TodoApp.Api
+    language: dotnet
+    host: containerapp
+    
+  web:
+    project: ./src/TodoApp.Web
+    language: dotnet
+    host: staticwebapp

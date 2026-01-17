@@ -116,7 +116,73 @@
 - **Created**: January 17, 2026
 - **Purpose**: Frontend hosting for todo-app POC
 - **Estimated Cost**: $0/month
+- **Status**: Active ✅ (Pending frontend deployment)
+- **Deployment Token**: See `apps/todo-app/azure-static-web-config.json`
+- **Cleanup Command**:
+  ```bash
+  az staticwebapp delete --name todo-app-web --resource-group todo-app --yes
+  ```
+
+### Container Registry: wiscodevacr
+- **Type**: Microsoft.ContainerRegistry/registries
+- **Resource Group**: Shared
+- **Location**: centralus
+- **Tier/SKU**: Basic
+- **Login Server**: wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io
+- **Created**: January 17, 2026
+- **Purpose**: Shared container registry for all POC Docker images
+- **Estimated Cost**: ~$0.17/day ($5/month)
 - **Status**: Active ✅
+- **Admin Enabled**: Yes
+- **Cleanup Command**:
+  ```bash
+  az acr delete --name wiscodevacr --resource-group Shared --yes
+  ```
+
+### Container Apps Environment: todoapp-env
+- **Type**: Microsoft.App/managedEnvironments
+- **Resource Group**: todo-app
+- **Location**: Central US
+- **Created**: January 17, 2026
+- **Purpose**: Container Apps hosting environment
+- **Default Domain**: politeriver-ded1b871.centralus.azurecontainerapps.io
+- **Static IP**: 20.221.48.64
+- **Log Analytics**: workspace-todoappBEfK (auto-created)
+- **Estimated Cost**: $0/month (consumption-based)
+- **Status**: Active ✅
+- **Cleanup Command**:
+  ```bash
+  az containerapp env delete --name todoapp-env --resource-group todo-app --yes
+  ```
+
+### Container App: todoapp-api
+- **Type**: Microsoft.App/containerApps
+- **Resource Group**: todo-app
+- **Location**: Central US
+- **Image**: wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io/todoapp-api:latest
+- **Created**: January 17, 2026
+- **Purpose**: TODO App .NET 10 API backend
+- **URL**: https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io
+- **Health Check**: https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io/health
+- **API Endpoint**: https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io/api/todos
+- **Scaling**: Min 0, Max 1 replicas (scale-to-zero enabled)
+- **Estimated Cost**: $0-2/month (pay-per-use, scales to zero)
+- **Status**: Active ✅ LIVE AND WORKING
+- **Cleanup Command**:
+  ```bash
+  az containerapp delete --name todoapp-api --resource-group todo-app --yes
+  ```
+
+### Log Analytics Workspace: todoapp-logs
+- **Type**: Microsoft.OperationalInsights/workspaces
+- **Resource Group**: todo-app
+- **Location**: centralus
+- **Created**: January 17, 2026
+- **Purpose**: Logging for Container Apps (manually created, auto-created used instead)
+- **Retention**: 30 days
+- **Estimated Cost**: ~$0-1/month (based on data ingestion)
+- **Status**: Active ✅
+- **Note**: Container Apps environment auto-created its own workspace (workspace-todoappBEfK)
 
 ---
 
@@ -145,11 +211,26 @@ _Resources created via GitHub Copilot will be documented here automatically_
 
 ## Cost Summary
 
-**Current Month Estimated**: $0.00  
-**Target**: $0-5/month for all POC resources
+**Current Month Estimated**: ~$5-7/month  
+**Target**: $0-7/month for all POC resources
 
 ### Cost Breakdown by Service
-_Will be updated as resources are created_
+
+| Service | Resource | Monthly Cost |
+|---------|----------|--------------|
+| Azure SQL (Serverless) | friends-prediction-db | $0-5 |
+| Azure SQL (Serverless) | todo-app-db | $0-5 |
+| Container Registry | wiscodevacr | ~$5 |
+| Container Apps | todoapp-api | $0-2 |
+| Static Web Apps | friends-prediction-web | $0 |
+| Static Web Apps | todo-app-web | $0 |
+| Log Analytics | Various workspaces | $0-1 |
+| **Total** | | **~$5-13** |
+
+**Notes**:
+- SQL databases use serverless tier with 60-min auto-pause
+- Container Apps scale to zero when idle
+- ACR Basic tier is the main fixed cost (~$5/month)
 
 ---
 
