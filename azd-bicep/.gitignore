@@ -1,0 +1,2 @@
+# Ignore azd environment files
+.azure/

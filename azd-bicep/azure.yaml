@@ -1,0 +1,28 @@
+# Azure Developer CLI (azd) project configuration
+# Learn more: https://learn.microsoft.com/azure/developer/azure-developer-cli
+
+name: azure-poc-platform
+
+metadata:
+  template: azure-poc-platform@1.0.0
+
+# Infrastructure configuration
+infra:
+  provider: bicep
+  path: infra
+  module: main
+
+# Hooks for custom deployment steps
+hooks:
+  # Run after infrastructure provisioning
+  postprovision:
+    shell: sh
+    run: |
+      echo "Infrastructure provisioned successfully!"
+      echo "SQL Server: ${AZURE_SQL_SERVER_FQDN}"
+      echo "Container Registry: ${AZURE_CONTAINER_REGISTRY_LOGIN_SERVER}"
+      echo "Container Apps Environment: ${AZURE_CONTAINER_APPS_ENVIRONMENT_NAME}"
+
+# Pipeline configuration for CI/CD
+pipeline:
+  provider: github
