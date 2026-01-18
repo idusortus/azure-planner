@@ -186,6 +186,66 @@
 
 ---
 
+## POC: leave-a-comment-app
+
+### Resource Group: leave-a-comment-app
+- **Type**: Resource Group
+- **Location**: centralus
+- **Created**: January 17, 2026
+- **Purpose**: Leave A Comment App - message board POC
+- **Status**: Active ✅
+
+### Database: leave-a-comment-app-db
+- **Type**: Microsoft.Sql/databases
+- **Resource Group**: Shared (on dev-wiscodev server)
+- **Location**: centralus
+- **Tier/SKU**: General Purpose, Serverless (Gen5, 0.5-1 vCores)
+- **Created**: January 17, 2026
+- **Purpose**: Database for leave-a-comment-app POC
+- **Estimated Cost**: $0-5/month (auto-pause 60 min)
+- **Status**: Active ✅
+- **Cleanup Command**:
+  ```bash
+  az sql db delete --name leave-a-comment-app-db --server dev-wiscodev --resource-group Shared --yes
+  ```
+
+### Static Web App: leave-a-comment-app-web
+- **Type**: Microsoft.Web/staticSites
+- **Resource Group**: leave-a-comment-app
+- **Location**: centralus
+- **Tier/SKU**: Free
+- **URL**: https://nice-sand-0b0628510.6.azurestaticapps.net
+- **Created**: January 17, 2026
+- **Purpose**: Frontend hosting for leave-a-comment-app POC
+- **Estimated Cost**: $0/month
+- **Status**: Active ✅ LIVE
+- **GitHub Workflow**: `.github/workflows/azure-static-web-apps-nice-sand-0b0628510.yml`
+- **Cleanup Command**:
+  ```bash
+  az staticwebapp delete --name leave-a-comment-app-web --resource-group leave-a-comment-app --yes
+  ```
+
+### Container App: leave-a-comment-api
+- **Type**: Microsoft.App/containerApps
+- **Resource Group**: leave-a-comment-app
+- **Environment**: todoapp-env (shared, in todo-app RG)
+- **Location**: Central US
+- **Image**: wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io/leave-a-comment-api:latest
+- **Created**: January 17, 2026
+- **Purpose**: Leave A Comment .NET 10 API backend
+- **URL**: https://leave-a-comment-api.politeriver-ded1b871.centralus.azurecontainerapps.io
+- **Health Check**: https://leave-a-comment-api.politeriver-ded1b871.centralus.azurecontainerapps.io/health
+- **API Endpoint**: https://leave-a-comment-api.politeriver-ded1b871.centralus.azurecontainerapps.io/api/comments
+- **Scaling**: Min 0, Max 1 replicas (scale-to-zero enabled)
+- **Estimated Cost**: $0-2/month (pay-per-use, scales to zero)
+- **Status**: Active ✅ LIVE AND WORKING
+- **Cleanup Command**:
+  ```bash
+  az containerapp delete --name leave-a-comment-api --resource-group leave-a-comment-app --yes
+  ```
+
+---
+
 ## Resource Creation Log
 
 _Resources created via GitHub Copilot will be documented here automatically_
@@ -211,7 +271,7 @@ _Resources created via GitHub Copilot will be documented here automatically_
 
 ## Cost Summary
 
-**Current Month Estimated**: ~$5-7/month  
+**Current Month Estimated**: ~$5-10/month  
 **Target**: $0-7/month for all POC resources
 
 ### Cost Breakdown by Service
@@ -220,17 +280,21 @@ _Resources created via GitHub Copilot will be documented here automatically_
 |---------|----------|--------------|
 | Azure SQL (Serverless) | friends-prediction-db | $0-5 |
 | Azure SQL (Serverless) | todo-app-db | $0-5 |
+| Azure SQL (Serverless) | leave-a-comment-app-db | $0-5 |
 | Container Registry | wiscodevacr | ~$5 |
 | Container Apps | todoapp-api | $0-2 |
+| Container Apps | leave-a-comment-api | $0-2 |
 | Static Web Apps | friends-prediction-web | $0 |
 | Static Web Apps | todo-app-web | $0 |
+| Static Web Apps | leave-a-comment-app-web | $0 |
 | Log Analytics | Various workspaces | $0-1 |
-| **Total** | | **~$5-13** |
+| **Total** | | **~$5-15** |
 
 **Notes**:
 - SQL databases use serverless tier with 60-min auto-pause
 - Container Apps scale to zero when idle
 - ACR Basic tier is the main fixed cost (~$5/month)
+- Container Apps environment shared across POCs (limit: 1 per region on this subscription)
 
 ---
 

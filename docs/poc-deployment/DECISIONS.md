@@ -264,10 +264,76 @@ Manual step: Fix `app_location` in generated workflow to point to `TestPOCApp/{P
 
 ---
 
+## ADR-012: Shared Container Apps Environment
+
+**Date**: January 17, 2026  
+**Status**: Accepted
+
+### Context
+Azure subscription has a limit of 1 Container Apps environment per region (on free/trial subscriptions). Creating a new environment for each POC fails.
+
+### Decision
+Share the existing Container Apps environment (`todoapp-env` in `todo-app` resource group) across all POCs.
+
+### Implementation
+When deploying a new POC's Container App:
+1. Get the full resource ID of the shared environment:
+   ```bash
+   ENV_ID=$(az containerapp env show --name todoapp-env --resource-group todo-app --query id -o tsv)
+   ```
+2. Reference by full ID (use `MSYS_NO_PATHCONV=1` in Git Bash to prevent path mangling):
+   ```bash
+   MSYS_NO_PATHCONV=1 az containerapp create \
+     --environment "$ENV_ID" \
+     ...
+   ```
+
+### Consequences
+- ✅ Works around subscription environment limit
+- ✅ Saves on Log Analytics workspace costs (shared)
+- ✅ Faster deployment (no env creation wait)
+- ⚠️ Cross-resource-group reference requires full resource ID
+- ⚠️ Git Bash mangles paths - must use `MSYS_NO_PATHCONV=1`
+- ⚠️ Environment name/RG in cleanup commands differ from app's RG
+
+---
+
+## ADR-013: ACR Credentials Must Be Explicit
+
+**Date**: January 17, 2026  
+**Status**: Accepted
+
+### Context
+Azure Container Apps doesn't auto-detect ACR credentials even when logged in with `az acr login`. This causes "Failed to retrieve credentials" errors.
+
+### Decision
+Always provide explicit `--registry-username` and `--registry-password` parameters when creating Container Apps.
+
+### Implementation
+```bash
+ACR_USER=$(az acr credential show --name wiscodevacr --query username -o tsv)
+ACR_PASS=$(az acr credential show --name wiscodevacr --query "passwords[0].value" -o tsv)
+
+az containerapp create \
+  --registry-server wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io \
+  --registry-username "$ACR_USER" \
+  --registry-password "$ACR_PASS" \
+  ...
+```
+
+### Consequences
+- ✅ Reliable deployment without credential lookup failures
+- ⚠️ Credentials visible in command history (acceptable for POCs)
+- 📋 Future: Consider managed identity for production
+
+---
+
 ## Future Considerations
 
 ### Accepted & In Use
 - ✅ **GitHub Actions CI/CD**: Now standard for Static Web App deployments (ADR-011)
+- ✅ **Shared Container Apps Environment**: Required due to subscription limits (ADR-012)
+- ✅ **Explicit ACR Credentials**: Required for reliable deployments (ADR-013)
 
 ### Under Evaluation
 - **Managed Identity for ACR**: More secure than admin credentials

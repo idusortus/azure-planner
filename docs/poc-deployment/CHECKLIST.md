@@ -138,12 +138,19 @@ docker build -t wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io/{poc-name}-api:latest \
 docker push wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io/{poc-name}-api:latest
 ```
 
-### 4.3 Create Container Apps Environment
+### 4.3 Create Container Apps Environment (or reuse existing)
 ```bash
+# Check for existing environments first (subscription may be limited to 1)
+az containerapp env list -o table
+
+# If creating new (may fail if limit reached):
 az containerapp env create \
   --name {poc-name}-env \
   --resource-group {poc-name} \
   --location centralus
+
+# If reusing existing env, get full resource ID:
+ENV_ID=$(az containerapp env show --name todoapp-env --resource-group todo-app --query id -o tsv)
 ```
 
 ### 4.4 Deploy API
@@ -152,11 +159,14 @@ az containerapp env create \
 ACR_USER=$(az acr credential show --name wiscodevacr --resource-group Shared --query username -o tsv)
 ACR_PASS=$(az acr credential show --name wiscodevacr --resource-group Shared --query "passwords[0].value" -o tsv)
 
-# Create container app
-az containerapp create \
+# IMPORTANT: If using Git Bash and referencing cross-RG environment, use MSYS_NO_PATHCONV=1
+# to prevent path mangling
+
+# Create container app (adjust --environment based on 4.3)
+MSYS_NO_PATHCONV=1 az containerapp create \
   --name {poc-name}-api \
   --resource-group {poc-name} \
-  --environment {poc-name}-env \
+  --environment "$ENV_ID" \
   --image wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io/{poc-name}-api:latest \
   --target-port 8080 \
   --ingress external \
@@ -164,8 +174,13 @@ az containerapp create \
   --registry-username "$ACR_USER" \
   --registry-password "$ACR_PASS" \
   --min-replicas 0 \
-  --max-replicas 1 \
-  --env-vars 'ConnectionStrings__{DbName}=Server=dev-wiscodev.database.windows.net;Database={poc-name}-db;User Id={user};Password={pass};TrustServerCertificate=True;'
+  --max-replicas 1
+
+# Then add connection string (use single quotes to avoid ! expansion)
+az containerapp update \
+  --name {poc-name}-api \
+  --resource-group {poc-name} \
+  --set-env-vars 'ConnectionStrings__DefaultConnection=Server=tcp:dev-wiscodev.database.windows.net,1433;Database={poc-name}-db;User ID={user};Password={pass};Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
 ```
 
 ### 4.5 Get API URL
@@ -245,8 +260,14 @@ az sql db delete --name {poc-name}-db --server dev-wiscodev --resource-group Sha
 | Problem | Solution |
 |---------|----------|
 | DB connection timeout | Wait 30-60s for serverless wake-up |
-| Docker build fails | Check Dockerfile paths relative to build context |
+| Docker not running | Start Docker Desktop, wait for full init |
+| Docker build fails | Check ServiceDefaults path (root, not `src/`) |
 | ACR push denied | Run `az acr login --name wiscodevacr` |
-| SWA deploy stuck | Use PowerShell: `.\deploy-frontend.ps1` |
+| ACR DNS not found | Use full login server: `wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io` |
+| Git Bash mangles paths | Prefix with `MSYS_NO_PATHCONV=1` |
+| `!` in password fails | Use single quotes around connection strings |
+| Env not found (cross-RG) | Use full resource ID, not just name |
+| ACR credentials not found | Add `--registry-username` and `--registry-password` |
 | CORS errors | Enable CORS in API: `builder.Services.AddCors()` |
 | Container won't start | Check `az containerapp logs show` |
+| Aspire nested folders | Flatten: `mv {Name}/* . && rm -rf {Name}` |

@@ -576,34 +576,37 @@ Create `src/{PocName}.Api/Dockerfile`:
 
 ```dockerfile
 # Build stage
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0-preview AS build
 WORKDIR /src
 
 # Copy csproj files and restore
-COPY ["src/{PocName}.Api/{PocName}.Api.csproj", "src/{PocName}.Api/"]
-COPY ["{PocName}.ServiceDefaults/{PocName}.ServiceDefaults.csproj", "{PocName}.ServiceDefaults/"]
-RUN dotnet restore "src/{PocName}.Api/{PocName}.Api.csproj"
+# NOTE: ServiceDefaults is at solution ROOT, not in src/
+COPY src/{PocName}.Api/{PocName}.Api.csproj src/{PocName}.Api/
+COPY {PocName}.ServiceDefaults/{PocName}.ServiceDefaults.csproj {PocName}.ServiceDefaults/
+RUN dotnet restore src/{PocName}.Api/{PocName}.Api.csproj
 
 # Copy everything else and build
-COPY ["src/{PocName}.Api/", "src/{PocName}.Api/"]
-COPY ["{PocName}.ServiceDefaults/", "{PocName}.ServiceDefaults/"]
-RUN dotnet build "src/{PocName}.Api/{PocName}.Api.csproj" -c Release -o /app/build
-
-# Publish stage
-FROM build AS publish
-RUN dotnet publish "src/{PocName}.Api/{PocName}.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+COPY src/{PocName}.Api/ src/{PocName}.Api/
+COPY {PocName}.ServiceDefaults/ {PocName}.ServiceDefaults/
+RUN dotnet publish src/{PocName}.Api/{PocName}.Api.csproj -c Release -o /app/publish
 
 # Runtime stage
-FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
+FROM mcr.microsoft.com/dotnet/aspnet:10.0-preview AS runtime
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
 
-COPY --from=publish /app/publish .
+COPY --from=build /app/publish .
+
+# Container Apps expects port 8080
+ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
+
 ENTRYPOINT ["dotnet", "{PocName}.Api.dll"]
 ```
 
-**Important**: The Dockerfile is designed to be run from the solution root, not the API folder.
+**Important**: 
+- Run `docker build` from the **solution root**, not the API folder
+- ServiceDefaults is at `{PocName}.ServiceDefaults/` (solution root), NOT `src/{PocName}.ServiceDefaults/`
+- Use `10.0-preview` images for .NET 10
 
 ### Step 4.2: Build Docker Image
 
@@ -782,12 +785,21 @@ Add entries to `docs/deployed-resources.md`:
 
 ### Docker Issues
 
+**Docker Desktop Not Running**
+- Error: `error during connect: ... open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified`
+- Solution: Start Docker Desktop and wait for it to fully initialize
+
 **Build Fails: File Not Found**
 - Dockerfile paths are relative to build context (solution root)
 - Run `docker build` from solution root, not API folder
+- **Note**: ServiceDefaults is at solution root (`{PocName}.ServiceDefaults/`), NOT in `src/`
 
 **Push Denied**
 - Run `az acr login --name wiscodevacr`
+
+**ACR DNS Not Found**
+- ACR login server has a unique suffix: `wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io`
+- Use `az acr list -o table` to get the correct login server URL
 
 ### Container Apps Issues
 
@@ -799,6 +811,22 @@ az containerapp logs show --name {app} --resource-group {rg} --follow
 **Image Pull Failed**
 - Verify ACR credentials are correct
 - Check image name matches exactly
+- Explicitly provide `--registry-username` and `--registry-password`
+
+**Git Bash Mangles Azure Resource IDs**
+- Error: Path contains `C:/Program Files/Git/subscriptions/...`
+- Solution: Prefix command with `MSYS_NO_PATHCONV=1`
+```bash
+MSYS_NO_PATHCONV=1 az containerapp create --environment "/subscriptions/..." ...
+```
+
+**Environment Not Found (Cross-Resource-Group)**
+- If reusing an env from another resource group, use the full resource ID
+- Get it with: `az containerapp env show --name {env} --resource-group {rg} --query id -o tsv`
+
+**Bash History Expansion with `!` in Password**
+- Error: `bash: !: event not found`
+- Solution: Use single quotes around connection strings containing `!`
 
 ### Static Web Apps Issues
 
