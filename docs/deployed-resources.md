@@ -4,19 +4,20 @@
 **Primary Region**: centralus  
 **Last Updated**: January 18, 2026
 
-## Architecture Note: Shared Database with Schemas
+> 📋 **Quick Reference**: See [MASTER.md](MASTER.md) for deployment process overview
 
-As of January 18, 2026, all POC applications share a **single `sandbox` database** using **schema-based isolation**:
+## Architecture: Shared Database with Schema Isolation
 
-| App | Schema | Tables |
-|-----|--------|--------|
-| TodoApp | `todo` | `TodoItems` |
-| LeaveACommentApp | `comments` | `Comments` |
-| FriendsPrediction | `predictions` | (future) |
+All POC applications share a **single `sandbox` database** using **schema-based isolation**:
+
+| POC | Schema | Tables | Status |
+|-----|--------|--------|--------|
+| TodoApp | `todo` | `TodoItems` | ✅ Live |
+| LeaveACommentApp | `comments` | `Comments` | ✅ Live |
+| FriendsPrediction | `predictions` | `Users`, `Events`, `Positions`, `Trades`, `ChatMessages`, `Notifications` | ✅ Live |
 
 **Benefits**:
-- Single free-tier database instead of multiple (~$10-15/month savings)
-- Simplified infrastructure management
+- Single free-tier database (~$10-15/month savings vs separate DBs)
 - Clean separation via SQL schemas
 - Each app uses `modelBuilder.HasDefaultSchema("schemaName")` in EF Core
 
@@ -80,24 +81,48 @@ As of January 18, 2026, all POC applications share a **single `sandbox` database
 - **Purpose**: Friends prediction betting app POC
 - **Status**: Active ✅
 
-### Database Schema: predictions (PLANNED)
+### Database Schema: predictions
 - **Database**: sandbox (shared)
 - **Schema**: `predictions`
-- **Purpose**: Future schema for friends-prediction data
-- **Status**: Not created yet - add with:
-  ```sql
-  CREATE SCHEMA [predictions];
-  ```
+- **Tables**: `Users`, `Events`, `Positions`, `Trades`, `ChatMessages`, `Notifications`
+- **Created**: January 18, 2026
+- **Purpose**: Social prediction market data (schema-isolated)
+- **EF Core Config**: `modelBuilder.HasDefaultSchema("predictions")`
+- **Status**: Active ✅
 
 ### Static Web App: friends-prediction-web
 - **Type**: Microsoft.Web/staticSites
 - **Resource Group**: friends-prediction
 - **Location**: centralus
 - **Tier/SKU**: Free
-- **URL**: https://icy-moss-06e338310.6.azurestaticapps.net
+- **URL**: https://kind-pebble-0eeaa2310.2.azurestaticapps.net
 - **Created**: January 16, 2026
 - **Purpose**: Frontend hosting for friends-prediction POC
 - **Estimated Cost**: $0/month
+- **Status**: Active ✅ LIVE
+- **Cleanup Command**:
+  ```bash
+  az staticwebapp delete --name friends-prediction-web --resource-group friends-prediction --yes
+  ```
+
+### Container App: friends-prediction-api
+- **Type**: Microsoft.App/containerApps
+- **Resource Group**: todo-app
+- **Environment**: todoapp-env (shared)
+- **Location**: Central US
+- **Image**: wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io/friends-prediction-api:latest
+- **Created**: January 18, 2026
+- **Purpose**: FriendsPrediction .NET 10 API backend
+- **URL**: https://friends-prediction-api.politeriver-ded1b871.centralus.azurecontainerapps.io
+- **API Endpoints**: `/api/events`, `/api/users`, `/api/positions`, etc.
+- **Scaling**: Min 0, Max 1 replicas (scale-to-zero enabled)
+- **CORS**: Configured for friends-prediction-web
+- **Estimated Cost**: $0-2/month (pay-per-use, scales to zero)
+- **Status**: Active ✅ LIVE AND WORKING
+- **Cleanup Command**:
+  ```bash
+  az containerapp delete --name friends-prediction-api --resource-group todo-app --yes
+  ```
 - **Status**: Active ✅
 
 ### Storage Account: friendspredictionsa
@@ -289,8 +314,8 @@ _Resources created via GitHub Copilot will be documented here automatically_
 
 ## Cost Summary
 
-**Current Month Estimated**: ~$5-7/month  
-**Target**: $0-7/month for all POC resources ✅ ACHIEVED
+**Current Month Estimated**: ~$5-10/month  
+**Target**: $0-10/month for all POC resources ✅ ACHIEVED
 
 ### Cost Breakdown by Service
 
@@ -300,19 +325,20 @@ _Resources created via GitHub Copilot will be documented here automatically_
 | Container Registry | wiscodevacr | ~$5 |
 | Container Apps | todoapp-api | $0-2 |
 | Container Apps | leave-a-comment-api | $0-2 |
+| Container Apps | friends-prediction-api | $0-2 |
 | Static Web Apps | friends-prediction-web | $0 |
 | Static Web Apps | todo-app-web | $0 |
 | Static Web Apps | leave-a-comment-app-web | $0 |
 | Log Analytics | Various workspaces | $0-1 |
-| **Total** | | **~$5-7** |
+| **Total** | | **~$5-10** |
 
 **Notes**:
-- **Schema-based isolation** - All POCs share single `sandbox` database (FREE TIER)
+- **Schema-based isolation** - All 3 POCs share single `sandbox` database (FREE TIER)
 - SQL database uses serverless tier with 60-min auto-pause
 - Container Apps scale to zero when idle
 - ACR Basic tier is the main fixed cost (~$5/month)
-- Container Apps environment shared across POCs (limit: 1 per region)
-- **Savings**: ~$10-15/month by eliminating per-POC databases
+- Container Apps environment shared across all POCs
+- **Savings**: ~$15-20/month by eliminating per-POC databases
 
 ---
 

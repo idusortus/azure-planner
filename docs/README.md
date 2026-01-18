@@ -2,7 +2,7 @@
 
 **Purpose:** Cost-optimized Azure service research and implementation guides for proof-of-concept projects.
 
-**Last Updated:** January 2025
+**Last Updated:** January 18, 2026
 
 ---
 
@@ -12,42 +12,45 @@
 
 | Document | Purpose |
 |----------|---------|
-| [**📋 CHECKLIST**](poc-deployment/CHECKLIST.md) | Quick step-by-step reference (5 phases, ~75 min total) |
+| [**⭐ MASTER**](MASTER.md) | **Quick reference - process overview, frameworks, CLI vs Bicep** |
+| [**📋 CHECKLIST**](poc-deployment/CHECKLIST.md) | Step-by-step deployment checklist |
 | [**📖 GUIDE**](poc-deployment/GUIDE.md) | Comprehensive explanations and detailed instructions |
 | [**🏛️ DECISIONS**](poc-deployment/DECISIONS.md) | Architecture Decision Records (ADRs) with rationale |
-| [**📁 Index**](poc-deployment/README.md) | Overview and architecture diagram |
+| [**📦 Bicep Templates**](../azd-bicep/README.md) | Infrastructure as Code for repeatable deployments |
 
-**Stack:** .NET 10 Aspire • Azure SQL Serverless • Container Apps • Static Web Apps • ACR
+**Stack:** .NET 10 Aspire • Azure SQL Serverless (schema isolation) • Container Apps • Static Web Apps • ACR
 
-**Cost Target:** $5-10/month for all POCs combined
+**Cost Achieved:** ~$5-10/month for 3 POCs combined ✅
 
-**Copilot Prompt:** Use [`.github/prompts/create-new-poc.prompt.md`](../.github/prompts/create-new-poc.prompt.md) to create new POCs
+---
+
+## 📊 Live POCs
+
+| POC | API | Frontend | Schema |
+|-----|-----|----------|--------|
+| TodoApp | [API](https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io/api/todos) | [Web](https://happy-desert-065eace10.6.azurestaticapps.net) | `todo` |
+| LeaveACommentApp | [API](https://leave-a-comment-api.politeriver-ded1b871.centralus.azurecontainerapps.io/api/comments) | [Web](https://nice-sand-0b0628510.6.azurestaticapps.net) | `comments` |
+| FriendsPrediction | [API](https://friends-prediction-api.politeriver-ded1b871.centralus.azurecontainerapps.io/api/events) | [Web](https://kind-pebble-0eeaa2310.2.azurestaticapps.net) | `predictions` |
 
 ---
 
 ## 📋 Quick Reference Index
 
 ### 🤖 AI Agents & Tools
-- [**Azure Resource Management Guide**](azure-resource-management-guide.md) - 🆕 **GitHub Copilot can now create & manage your Azure resources!**
-- [**BudgetFriendlyAzureAdvisor Agent**](budget-friendly-azure-advisor-agent.md) - AI agent for Azure research and cost optimization
+- [**Deployed Resources Tracking**](deployed-resources.md) - Live inventory of all Azure resources
 - [**Quick Start: Agent Setup**](quick-start-agent.md) - Get the agent running in 5 minutes
-- [**Using with GitHub Copilot**](using-agent-with-github-copilot.md) - MCP server integration for natural AI assistance
+- [**Using with GitHub Copilot**](using-agent-with-github-copilot.md) - MCP server integration
 - [**Corporate Security Workaround**](corporate-security-workaround.md) - Running .NET apps in restricted environments
-- [**Deployed Resources Tracking**](deployed-resources.md) - Live inventory of all created Azure resources
 
 ### Database Services
-- [**Azure SQL Database Free Tier**](azure-sql-free-tier.md) - Complete guide to free SQL databases with multi-database architecture
+- [**Azure SQL Database Free Tier**](Azure/Planning/azure-sql-free-tier.md) - Complete guide to free SQL databases
+- [**SQL Credentials**](sql-credentials.md) - Connection strings and credentials
 
 ### Compute Services
-*Coming soon: Azure Functions, Azure Static Web Apps, Azure Container Apps*
+*Coming soon: Azure Functions, Azure Container Apps deep-dive*
 
 ### Messaging & Integration
 *Coming soon: Azure Service Bus, Event Grid*
-
-### Storage Services
-*Coming soon: Azure Storage (Blob, Table, Queue), Azure Cosmos DB*
-
-### Developer Tools
 *Coming soon: Azure Key Vault, Application Insights, MCP Server hosting*
 
 ---
