@@ -6,13 +6,17 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LeaveACommentApp.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialCreate_CommentsSchema : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "comments");
+
             migrationBuilder.CreateTable(
                 name: "Comments",
+                schema: "comments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -28,6 +32,7 @@ namespace LeaveACommentApp.Api.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_CreatedAt",
+                schema: "comments",
                 table: "Comments",
                 column: "CreatedAt");
         }
@@ -36,7 +41,8 @@ namespace LeaveACommentApp.Api.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Comments");
+                name: "Comments",
+                schema: "comments");
         }
     }
 }

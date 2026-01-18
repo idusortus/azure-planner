@@ -13,6 +13,9 @@ public class CommentDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // Use dedicated schema for this POC in shared sandbox database
+        modelBuilder.HasDefaultSchema("comments");
+        
         modelBuilder.Entity<Comment>(entity =>
         {
             entity.HasKey(e => e.Id);

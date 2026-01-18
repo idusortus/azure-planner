@@ -12,14 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LeaveACommentApp.Api.Migrations
 {
     [DbContext(typeof(CommentDbContext))]
-    [Migration("20260118013215_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260118023003_InitialCreate_CommentsSchema")]
+    partial class InitialCreate_CommentsSchema
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("comments")
                 .HasAnnotation("ProductVersion", "10.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -50,7 +51,7 @@ namespace LeaveACommentApp.Api.Migrations
 
                     b.HasIndex("CreatedAt");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", "comments");
                 });
 #pragma warning restore 612, 618
         }

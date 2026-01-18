@@ -2,7 +2,25 @@
 
 **Subscription**: Azure subscription 1 (e4b6b908-fa56-4b92-9e9c-5b0c855d13fe)  
 **Primary Region**: centralus  
-**Last Updated**: January 17, 2026
+**Last Updated**: January 18, 2026
+
+## Architecture Note: Shared Database with Schemas
+
+As of January 18, 2026, all POC applications share a **single `sandbox` database** using **schema-based isolation**:
+
+| App | Schema | Tables |
+|-----|--------|--------|
+| TodoApp | `todo` | `TodoItems` |
+| LeaveACommentApp | `comments` | `Comments` |
+| FriendsPrediction | `predictions` | (future) |
+
+**Benefits**:
+- Single free-tier database instead of multiple (~$10-15/month savings)
+- Simplified infrastructure management
+- Clean separation via SQL schemas
+- Each app uses `modelBuilder.HasDefaultSchema("schemaName")` in EF Core
+
+---
 
 ## Current Resources
 
@@ -20,8 +38,23 @@
 - **Location**: centralus
 - **Purpose**: Shared SQL Server for all POC databases
 - **Status**: Active ✅
-- **Admin User**: sqladmin
+- **Admin User**: BryceAndConrad
 - **Estimated Cost**: $0/month (server is free, only DBs cost)
+
+### Database: sandbox (SHARED)
+- **Type**: Microsoft.Sql/databases
+- **Resource Group**: Shared (on dev-wiscodev server)
+- **Location**: centralus
+- **Tier/SKU**: General Purpose, Serverless (Gen5, 0.5-1 vCores)
+- **Created**: Pre-existing, repurposed January 18, 2026
+- **Purpose**: **Shared database for ALL POC applications** using schema isolation
+- **Schemas**: `todo`, `comments` (more to come)
+- **Estimated Cost**: $0-5/month (auto-pause 60 min) - FREE TIER
+- **Status**: Active ✅
+- **Cleanup Command**:
+  ```bash
+  az sql db delete --name sandbox --server dev-wiscodev --resource-group Shared --yes
+  ```
 
 ### Service Bus Namespace: wiscoshared
 - **Type**: Microsoft.ServiceBus/namespaces
@@ -47,18 +80,13 @@
 - **Purpose**: Friends prediction betting app POC
 - **Status**: Active ✅
 
-### Database: friends-prediction-db
-- **Type**: Microsoft.Sql/databases
-- **Resource Group**: Shared (on dev-wiscodev server)
-- **Location**: centralus
-- **Tier/SKU**: General Purpose, Serverless (Gen5, 0.5-1 vCores)
-- **Created**: January 16, 2026
-- **Purpose**: Database for friends-prediction POC
-- **Estimated Cost**: $0-5/month (auto-pause 60 min)
-- **Status**: Active ✅
-- **Cleanup Command**:
-  ```bash
-  az sql db delete --name friends-prediction-db --server dev-wiscodev --resource-group Shared --yes
+### Database Schema: predictions (PLANNED)
+- **Database**: sandbox (shared)
+- **Schema**: `predictions`
+- **Purpose**: Future schema for friends-prediction data
+- **Status**: Not created yet - add with:
+  ```sql
+  CREATE SCHEMA [predictions];
   ```
 
 ### Static Web App: friends-prediction-web
@@ -93,19 +121,14 @@
 - **Purpose**: TODO app test POC
 - **Status**: Active ✅
 
-### Database: todo-app-db
-- **Type**: Microsoft.Sql/databases
-- **Resource Group**: Shared (on dev-wiscodev server)
-- **Location**: centralus
-- **Tier/SKU**: General Purpose, Serverless (Gen5, 0.5-1 vCores)
-- **Created**: January 17, 2026
-- **Purpose**: Database for todo-app POC
-- **Estimated Cost**: $0-5/month (auto-pause 60 min)
+### Database Schema: todo
+- **Database**: sandbox (shared)
+- **Schema**: `todo`
+- **Tables**: `TodoItems`
+- **Created**: January 18, 2026
+- **Purpose**: TODO items storage (schema-isolated)
+- **EF Core Config**: `modelBuilder.HasDefaultSchema("todo")`
 - **Status**: Active ✅
-- **Cleanup Command**:
-  ```bash
-  az sql db delete --name todo-app-db --server dev-wiscodev --resource-group Shared --yes
-  ```
 
 ### Static Web App: todo-app-web
 - **Type**: Microsoft.Web/staticSites
@@ -195,19 +218,14 @@
 - **Purpose**: Leave A Comment App - message board POC
 - **Status**: Active ✅
 
-### Database: leave-a-comment-app-db
-- **Type**: Microsoft.Sql/databases
-- **Resource Group**: Shared (on dev-wiscodev server)
-- **Location**: centralus
-- **Tier/SKU**: General Purpose, Serverless (Gen5, 0.5-1 vCores)
-- **Created**: January 17, 2026
-- **Purpose**: Database for leave-a-comment-app POC
-- **Estimated Cost**: $0-5/month (auto-pause 60 min)
+### Database Schema: comments
+- **Database**: sandbox (shared)
+- **Schema**: `comments`
+- **Tables**: `Comments`
+- **Created**: January 18, 2026
+- **Purpose**: Comments storage (schema-isolated)
+- **EF Core Config**: `modelBuilder.HasDefaultSchema("comments")`
 - **Status**: Active ✅
-- **Cleanup Command**:
-  ```bash
-  az sql db delete --name leave-a-comment-app-db --server dev-wiscodev --resource-group Shared --yes
-  ```
 
 ### Static Web App: leave-a-comment-app-web
 - **Type**: Microsoft.Web/staticSites
@@ -271,16 +289,14 @@ _Resources created via GitHub Copilot will be documented here automatically_
 
 ## Cost Summary
 
-**Current Month Estimated**: ~$5-10/month  
-**Target**: $0-7/month for all POC resources
+**Current Month Estimated**: ~$5-7/month  
+**Target**: $0-7/month for all POC resources ✅ ACHIEVED
 
 ### Cost Breakdown by Service
 
 | Service | Resource | Monthly Cost |
 |---------|----------|--------------|
-| Azure SQL (Serverless) | friends-prediction-db | $0-5 |
-| Azure SQL (Serverless) | todo-app-db | $0-5 |
-| Azure SQL (Serverless) | leave-a-comment-app-db | $0-5 |
+| Azure SQL (Serverless) | sandbox (shared, FREE TIER) | **$0** |
 | Container Registry | wiscodevacr | ~$5 |
 | Container Apps | todoapp-api | $0-2 |
 | Container Apps | leave-a-comment-api | $0-2 |
@@ -288,13 +304,15 @@ _Resources created via GitHub Copilot will be documented here automatically_
 | Static Web Apps | todo-app-web | $0 |
 | Static Web Apps | leave-a-comment-app-web | $0 |
 | Log Analytics | Various workspaces | $0-1 |
-| **Total** | | **~$5-15** |
+| **Total** | | **~$5-7** |
 
 **Notes**:
-- SQL databases use serverless tier with 60-min auto-pause
+- **Schema-based isolation** - All POCs share single `sandbox` database (FREE TIER)
+- SQL database uses serverless tier with 60-min auto-pause
 - Container Apps scale to zero when idle
 - ACR Basic tier is the main fixed cost (~$5/month)
-- Container Apps environment shared across POCs (limit: 1 per region on this subscription)
+- Container Apps environment shared across POCs (limit: 1 per region)
+- **Savings**: ~$10-15/month by eliminating per-POC databases
 
 ---
 

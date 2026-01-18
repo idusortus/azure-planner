@@ -17,6 +17,9 @@ public class TodoDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // Use dedicated schema for this POC in shared sandbox database
+        modelBuilder.HasDefaultSchema("todo");
+        
         modelBuilder.Entity<TodoItem>(entity =>
         {
             entity.HasKey(e => e.Id);

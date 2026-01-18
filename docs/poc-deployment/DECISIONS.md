@@ -7,13 +7,15 @@
 ## ADR-001: Shared SQL Server with Per-POC Databases
 
 **Date**: January 17, 2026  
-**Status**: Accepted
+**Status**: ~~Accepted~~ **SUPERSEDED by ADR-014** (Schema-Based Database Isolation)
 
 ### Context
 Azure SQL charges per database. We need multiple POCs but want to minimize costs.
 
 ### Decision
-Use a single shared SQL Server (`dev-wiscodev`) in the `Shared` resource group. Each POC gets its own database on this server.
+~~Use a single shared SQL Server (`dev-wiscodev`) in the `Shared` resource group. Each POC gets its own database on this server.~~
+
+**UPDATE (January 18, 2026)**: This approach was superseded by ADR-014 which consolidates all POCs into a single `sandbox` database using SQL schemas for isolation. See ADR-014 for details.
 
 ### Consequences
 - ✅ Server is free (only databases cost money)
@@ -325,6 +327,102 @@ az containerapp create \
 - ✅ Reliable deployment without credential lookup failures
 - ⚠️ Credentials visible in command history (acceptable for POCs)
 - 📋 Future: Consider managed identity for production
+
+---
+
+## ADR-014: Schema-Based Database Isolation
+
+**Date**: January 18, 2026  
+**Status**: Accepted (supersedes ADR-001)
+
+### Context
+ADR-001 created separate databases per POC on a shared SQL Server. While serverless with auto-pause, each database still incurred potential costs ($0-5/month each) and was outside the free tier quota (1 free database).
+
+### Decision
+Consolidate all POC data into a **single `sandbox` database** using **SQL schemas** for isolation:
+
+| App | Schema | EF Core Config |
+|-----|--------|----------------|
+| TodoApp | `todo` | `modelBuilder.HasDefaultSchema("todo")` |
+| LeaveACommentApp | `comments` | `modelBuilder.HasDefaultSchema("comments")` |
+| FriendsPrediction | `predictions` | (future) |
+
+### Implementation
+
+1. **Create schemas in sandbox database**:
+   ```sql
+   CREATE SCHEMA [todo];
+   CREATE SCHEMA [comments];
+   ```
+
+2. **Configure EF Core DbContext**:
+   ```csharp
+   protected override void OnModelCreating(ModelBuilder modelBuilder)
+   {
+       modelBuilder.HasDefaultSchema("todo"); // or "comments"
+       // ... rest of configuration
+   }
+   ```
+
+3. **Update connection strings** to point to `sandbox` database:
+   ```
+   Server=tcp:dev-wiscodev.database.windows.net,1433;Database=sandbox;...
+   ```
+
+4. **Regenerate migrations** (delete old migrations, create new with schema):
+   ```bash
+   rm -rf Migrations/
+   dotnet ef migrations add InitialCreate_{Schema}Schema
+   dotnet ef database update
+   ```
+
+5. **Delete old databases**:
+   ```bash
+   az sql db delete --name todo-app-db --server dev-wiscodev --resource-group Shared --yes
+   az sql db delete --name leave-a-comment-app-db --server dev-wiscodev --resource-group Shared --yes
+   az sql db delete --name friends-prediction-db --server dev-wiscodev --resource-group Shared --yes
+   ```
+
+### Consequences
+- ✅ **$10-15/month savings** - single free-tier database instead of multiple
+- ✅ **Simplified management** - one database to monitor/backup
+- ✅ **Clean isolation** - each app only sees its schema tables
+- ✅ **Free tier eligible** - sandbox is the one free serverless DB
+- ⚠️ **Shared connection pool** - all apps share same DB resources
+- ⚠️ **Schema awareness required** - EF migrations must be schema-aware
+- ⚠️ **Manual schema creation** - schemas must be created before first migration
+
+### Migration Notes
+- **Development connection string** must also point to `sandbox` for EF tools to work correctly
+- EF Core `__EFMigrationsHistory` table is shared (in `dbo` schema) but migrations are per-app
+- Each app's migrations track their own schema's changes independently
+
+---
+
+## ADR-015: Git Bash Path Mangling Workaround
+
+**Date**: January 17-18, 2026  
+**Status**: Accepted
+
+### Context
+Git Bash on Windows converts forward-slash paths to Unix-style paths, which breaks Azure CLI commands that pass resource IDs.
+
+### Decision
+Prefix all `az` commands that include resource IDs with `MSYS_NO_PATHCONV=1`.
+
+### Implementation
+```bash
+# Without prefix - FAILS (path mangled)
+az containerapp update --name myapp --resource-group myrg --set-env-vars "ConnectionStrings__MyDb=$CONN_STR"
+
+# With prefix - WORKS
+MSYS_NO_PATHCONV=1 az containerapp update --name myapp --resource-group myrg --set-env-vars "ConnectionStrings__MyDb=$CONN_STR"
+```
+
+### Consequences
+- ✅ Commands work correctly in Git Bash
+- ⚠️ Easy to forget prefix (add to documentation)
+- 📋 Alternative: Use PowerShell for Azure commands
 
 ---
 

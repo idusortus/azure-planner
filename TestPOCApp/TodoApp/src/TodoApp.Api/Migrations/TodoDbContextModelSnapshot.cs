@@ -17,6 +17,7 @@ namespace TodoApp.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("todo")
                 .HasAnnotation("ProductVersion", "9.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -52,7 +53,7 @@ namespace TodoApp.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TodoItems");
+                    b.ToTable("TodoItems", "todo");
                 });
 #pragma warning restore 612, 618
         }

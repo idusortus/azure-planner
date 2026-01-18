@@ -17,6 +17,7 @@ namespace LeaveACommentApp.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("comments")
                 .HasAnnotation("ProductVersion", "10.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -47,7 +48,7 @@ namespace LeaveACommentApp.Api.Migrations
 
                     b.HasIndex("CreatedAt");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", "comments");
                 });
 #pragma warning restore 612, 618
         }
