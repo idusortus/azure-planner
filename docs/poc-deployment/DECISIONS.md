@@ -219,17 +219,62 @@ Update all projects to `net10.0` for consistency and to use latest features.
 
 ---
 
+## ADR-011: GitHub Actions for Static Web App Deployment
+
+**Date**: January 17, 2026  
+**Status**: Accepted
+
+### Context
+Initial approach used SWA CLI for frontend deployment, which consistently timed out due to network/firewall issues in corporate environments. Static Web Apps were created without GitHub integration.
+
+### Decision
+Create Static Web Apps **with GitHub integration** from the start using `az staticwebapp create --source --branch --token`. This automatically sets up GitHub Actions workflows for deployment.
+
+### Implementation
+```bash
+az staticwebapp create \
+  --name {poc-name}-web \
+  --resource-group {poc-name} \
+  --location centralus \
+  --source https://github.com/{org}/{repo} \
+  --branch main \
+  --token {github-token}
+```
+
+Azure automatically:
+1. Creates the Static Web App
+2. Generates a GitHub Actions workflow in `.github/workflows/`
+3. Configures deployment on push to `main`
+
+Manual step: Fix `app_location` in generated workflow to point to `TestPOCApp/{PocName}/src/{PocName}.Web/wwwroot`.
+
+### Consequences
+- ✅ Eliminates SWA CLI timeout issues
+- ✅ Automatic deployments on every push to main
+- ✅ Deployment logs visible in GitHub Actions
+- ✅ Works in corporate environments with restrictive firewalls
+- ✅ No manual deployment steps required
+- ⚠️ Requires GitHub personal access token during setup
+- ⚠️ Must remember to fix `app_location` in generated workflow
+
+### Alternatives Considered
+- **SWA CLI manual deployment**: Consistently timed out
+- **Portal file upload**: Manual and not repeatable
+- **Recreating SWA**: Didn't solve the root CLI timeout issue
+
+---
+
 ## Future Considerations
 
-### Under Evaluation
+### Accepted & In Use
+- ✅ **GitHub Actions CI/CD**: Now standard for Static Web App deployments (ADR-011)
 
+### Under Evaluation
 - **Managed Identity for ACR**: More secure than admin credentials
 - **Azure Key Vault**: Better secret management than env vars
 - **Application Insights**: Better observability
-- **GitHub Actions CI/CD**: Automated deployments
 
 ### Explicitly Deferred
-
 - **Multi-region deployment**: Not needed for POCs
 - **Custom domains**: Can add later if needed
 - **SSL certificates**: Static Web Apps provides automatic HTTPS

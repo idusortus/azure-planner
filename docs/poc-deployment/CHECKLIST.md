@@ -181,10 +181,20 @@ echo "API: https://$API_URL"
 window.API_BASE_URL = 'https://{api-url}/api/{resource}';
 ```
 
-### 4.7 Deploy Frontend
+### 4.7 Deploy Frontend via GitHub Actions
 ```bash
-cd src/{PocName}.Web/wwwroot
-swa deploy . --deployment-token "{token-from-azure-static-web-config.json}" --env production
+# Frontend deploys automatically via GitHub Actions workflow
+# Verify workflow file exists:
+ls .github/workflows/azure-static-web-apps-*.yml
+
+# Fix app_location if needed (should point to src/{PocName}.Web/wwwroot)
+# Push to trigger deployment:
+git add .
+git commit -m "Deploy {poc-name} frontend"
+git push
+
+# Watch deployment:
+gh run watch
 ```
 
 ---

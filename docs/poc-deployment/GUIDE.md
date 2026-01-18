@@ -222,7 +222,7 @@ cp ../todo-app/.gitignore .
 
 ### Step 1.3: Configure Scripts
 
-Edit each script to set your POC name:
+Edit each script to set your POC name and (for SWA) your GitHub token:
 
 ```bash
 # In setup-database.sh
@@ -230,6 +230,8 @@ APP_NAME="your-poc-name"
 
 # In setup-static-web-app.sh
 APP_NAME="your-poc-name"
+GITHUB_TOKEN="your-github-token"  # Get with: gh auth token
+GITHUB_REPO="https://github.com/idusortus/azure-planner"  # Your repo URL
 ```
 
 ### Step 1.4: Run Database Setup
@@ -259,11 +261,13 @@ chmod +x setup-static-web-app.sh
 **What this does**:
 1. Creates dedicated resource group for the POC
 2. Registers required Azure providers (if needed)
-3. Creates Static Web App (Free tier)
-4. Generates `azure-static-web-config.json` with deployment token
+3. Creates Static Web App (Free tier) **WITH GitHub integration**
+4. Automatically creates GitHub Actions workflow in `.github/workflows/`
+5. Generates `azure-static-web-config.json` with SWA details
 
 **Generated files**:
-- `azure-static-web-config.json` - SWA URL and deployment token
+- `azure-static-web-config.json` - SWA URL and details
+- `.github/workflows/azure-static-web-apps-{random-id}.yml` - Auto-deployment workflow
 
 ### Verification
 
@@ -678,16 +682,43 @@ Create production `config.js`:
 window.API_BASE_URL = 'https://{api-fqdn}/api/{entities}';
 ```
 
-### Step 4.8: Deploy Frontend
+### Step 4.8: Deploy Frontend via GitHub Actions
+
+**Important**: Azure created a GitHub Actions workflow when you ran `setup-static-web-app.sh`.
+
+#### Fix the Workflow Path
 
 ```bash
-cd src/{PocName}.Web/wwwroot
+# Find the workflow file
+ls .github/workflows/azure-static-web-apps-*.yml
 
-# Get deployment token from azure-static-web-config.json
-TOKEN=$(cat ../../../../apps/{poc-name}/azure-static-web-config.json | jq -r '.staticWebApp.deploymentToken')
-
-swa deploy . --deployment-token "$TOKEN" --env production
+# Edit the file and update app_location:
+# Change: app_location: "/"
+# To: app_location: "TestPOCApp/{PocName}/src/{PocName}.Web/wwwroot"
 ```
+
+#### Deploy
+
+```bash
+# Commit all changes (including fixed workflow)
+git add .
+git commit -m "Deploy {poc-name} frontend"
+git push
+
+# Watch deployment progress
+gh run watch
+
+# Or check status
+gh run list --limit 3
+```
+
+**What happens**:
+1. Push triggers GitHub Actions workflow
+2. Azure builds and deploys your frontend automatically
+3. Site goes live at your Static Web App URL
+4. Future pushes to `main` trigger automatic redeployments
+
+**No more SWA CLI timeouts!** 🎉
 
 ---
 

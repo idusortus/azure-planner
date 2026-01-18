@@ -75,7 +75,10 @@ Before starting, read these documents to understand our patterns:
 3. Create Container Apps environment in `{poc-name}` RG
 4. Deploy API with connection string env var
 5. Create production `config.js` with Container App URL
-6. Deploy frontend with SWA CLI
+6. **Fix GitHub Actions workflow**:
+   - Edit `.github/workflows/azure-static-web-apps-*.yml`
+   - Update `app_location` to `TestPOCApp/{PocName}/src/{PocName}.Web/wwwroot`
+7. Push to deploy frontend via GitHub Actions
 
 ### Phase 5: Documentation
 
