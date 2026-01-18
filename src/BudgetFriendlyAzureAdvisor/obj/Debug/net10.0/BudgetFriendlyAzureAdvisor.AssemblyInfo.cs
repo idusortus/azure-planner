@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BudgetFriendlyAzureAdvisor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9aa9411b7586215a122983832fe02cfc02ee100d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b0d24e217dc143a150ecd11c2e727530e23b51d1")]
 [assembly: System.Reflection.AssemblyProductAttribute("BudgetFriendlyAzureAdvisor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BudgetFriendlyAzureAdvisor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
