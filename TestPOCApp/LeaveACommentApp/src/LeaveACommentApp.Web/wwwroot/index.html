@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave A Comment - Azure POC</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="/config.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💬 Leave A Comment</h1>
+            <p class="subtitle">Say something! (255 chars max)</p>
+            <p class="user-info">Posting as: <span id="username" class="username"></span></p>
+        </header>
+
+        <main>
+            <!-- Post Comment Form -->
+            <form id="comment-form" class="comment-form">
+                <div class="textarea-wrapper">
+                    <textarea 
+                        id="message" 
+                        placeholder="What's on your mind?" 
+                        maxlength="255" 
+                        required></textarea>
+                    <span class="char-count"><span id="char-current">0</span>/255</span>
+                </div>
+                <button type="submit">Post Comment</button>
+            </form>
+
+            <!-- Refresh Button -->
+            <div class="actions">
+                <button id="refresh-btn" class="refresh-btn">🔄 Refresh Comments</button>
+            </div>
+
+            <!-- Comments List -->
+            <section id="comments-section" class="comments-section">
+                <div id="comments-list" class="comments-list">
+                    <!-- Comments will be rendered here -->
+                </div>
+                <div id="loading" class="loading">Loading comments...</div>
+                <div id="empty-state" class="empty-state" style="display: none;">
+                    No comments yet. Be the first to say something!
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Azure POC - .NET Aspire + Vanilla JS</p>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
