@@ -5,11 +5,15 @@
 		},
 		{
 			"path": "../../friends-prediction-m"
+		},
+		{
+			"path": "../../friends-prediction-rework"
 		}
 	],
 	"settings": {
 		"chat.tools.terminal.autoApprove": {
 			"az": true
-		}
+		},
+		"powershell.cwd": "azure-planner"
 	}
 }

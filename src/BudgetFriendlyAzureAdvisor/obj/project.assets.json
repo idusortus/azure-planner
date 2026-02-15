@@ -108,12 +108,12 @@
           }
         }
       },
-      "Microsoft.Agents.AI/1.0.0-preview.260108.1": {
+      "Microsoft.Agents.AI/1.0.0-preview.260212.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Agents.AI.Abstractions": "1.0.0-preview.260108.1",
-          "Microsoft.Extensions.AI": "10.1.1",
-          "Microsoft.Extensions.AI.Abstractions": "10.1.1",
+          "Microsoft.Agents.AI.Abstractions": "1.0.0-preview.260212.1",
+          "Microsoft.Extensions.AI": "10.3.0",
+          "Microsoft.Extensions.AI.Abstractions": "10.3.0",
           "Microsoft.Extensions.VectorData.Abstractions": "9.7.0"
         },
         "compile": {
@@ -127,10 +127,10 @@
           }
         }
       },
-      "Microsoft.Agents.AI.Abstractions/1.0.0-preview.260108.1": {
+      "Microsoft.Agents.AI.Abstractions/1.0.0-preview.260212.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.AI.Abstractions": "10.1.1"
+          "Microsoft.Extensions.AI.Abstractions": "10.3.0"
         },
         "compile": {
           "lib/net10.0/Microsoft.Agents.AI.Abstractions.dll": {
@@ -143,17 +143,17 @@
           }
         }
       },
-      "Microsoft.Agents.AI.AzureAI/1.0.0-preview.260108.1": {
+      "Microsoft.Agents.AI.AzureAI/1.0.0-preview.260212.1": {
         "type": "package",
         "dependencies": {
           "Azure.AI.Projects": "1.2.0-beta.5",
           "Azure.AI.Projects.OpenAI": "1.0.0-beta.5",
           "Azure.Identity": "1.17.1",
-          "Microsoft.Agents.AI": "1.0.0-preview.260108.1",
-          "Microsoft.Bcl.AsyncInterfaces": "10.0.1",
-          "Microsoft.Extensions.AI": "10.1.1",
-          "Microsoft.Extensions.AI.Abstractions": "10.1.1",
-          "Microsoft.Extensions.AI.OpenAI": "10.1.1-preview.1.25612.2",
+          "Microsoft.Agents.AI": "1.0.0-preview.260212.1",
+          "Microsoft.Bcl.AsyncInterfaces": "10.0.3",
+          "Microsoft.Extensions.AI": "10.3.0",
+          "Microsoft.Extensions.AI.Abstractions": "10.3.0",
+          "Microsoft.Extensions.AI.OpenAI": "10.3.0",
           "Microsoft.Extensions.VectorData.Abstractions": "9.7.0",
           "Microsoft.Identity.Client.Extensions.Msal": "4.78.0",
           "OpenAI": "2.8.0",
@@ -170,12 +170,12 @@
           }
         }
       },
-      "Microsoft.Agents.Authentication/1.4.36-beta": {
+      "Microsoft.Agents.Authentication/1.4.79-beta": {
         "type": "package",
         "dependencies": {
           "Azure.Identity": "1.17.1",
-          "Microsoft.Agents.Core": "1.4.36-beta",
-          "System.Configuration.ConfigurationManager": "10.0.1",
+          "Microsoft.Agents.Core": "1.4.79-beta",
+          "System.Configuration.ConfigurationManager": "10.0.2",
           "System.IdentityModel.Tokens.Jwt": "8.15.0"
         },
         "compile": {
@@ -189,16 +189,16 @@
           }
         }
       },
-      "Microsoft.Agents.Builder/1.4.36-beta": {
+      "Microsoft.Agents.Builder/1.4.79-beta": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Agents.Authentication": "1.4.36-beta",
-          "Microsoft.Agents.Connector": "1.4.36-beta",
-          "Microsoft.Agents.Core": "1.4.36-beta",
-          "Microsoft.Agents.Storage": "1.4.36-beta",
-          "Microsoft.Agents.Storage.Transcript": "1.4.36-beta",
+          "Microsoft.Agents.Authentication": "1.4.79-beta",
+          "Microsoft.Agents.Connector": "1.4.79-beta",
+          "Microsoft.Agents.Core": "1.4.79-beta",
+          "Microsoft.Agents.Storage": "1.4.79-beta",
+          "Microsoft.Agents.Storage.Transcript": "1.4.79-beta",
           "System.IdentityModel.Tokens.Jwt": "8.15.0",
-          "System.Memory.Data": "10.0.1"
+          "System.Memory.Data": "10.0.2"
         },
         "compile": {
           "lib/net8.0/Microsoft.Agents.Builder.dll": {
@@ -211,14 +211,14 @@
           }
         }
       },
-      "Microsoft.Agents.Connector/1.4.36-beta": {
+      "Microsoft.Agents.Connector/1.4.79-beta": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Agents.Authentication": "1.4.36-beta",
-          "Microsoft.Agents.Core": "1.4.36-beta",
-          "Microsoft.Bcl.Memory": "10.0.1",
+          "Microsoft.Agents.Authentication": "1.4.79-beta",
+          "Microsoft.Agents.Core": "1.4.79-beta",
+          "Microsoft.Bcl.Memory": "10.0.2",
           "System.IdentityModel.Tokens.Jwt": "8.15.0",
-          "System.Runtime.Caching": "10.0.1"
+          "System.Runtime.Caching": "10.0.2"
         },
         "compile": {
           "lib/net8.0/Microsoft.Agents.Connector.dll": {
@@ -231,7 +231,7 @@
           }
         }
       },
-      "Microsoft.Agents.Core/1.4.36-beta": {
+      "Microsoft.Agents.Core/1.4.79-beta": {
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.Agents.Core.dll": {
@@ -244,11 +244,11 @@
           }
         }
       },
-      "Microsoft.Agents.Hosting.AspNetCore/1.4.36-beta": {
+      "Microsoft.Agents.Hosting.AspNetCore/1.4.79-beta": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Agents.Builder": "1.4.36-beta",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.22",
+          "Microsoft.Agents.Builder": "1.4.79-beta",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.23",
           "Microsoft.IdentityModel.Validators": "8.15.0",
           "System.IdentityModel.Tokens.Jwt": "8.15.0"
         },
@@ -266,10 +266,10 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Microsoft.Agents.Storage/1.4.36-beta": {
+      "Microsoft.Agents.Storage/1.4.79-beta": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Agents.Core": "1.4.36-beta"
+          "Microsoft.Agents.Core": "1.4.79-beta"
         },
         "compile": {
           "lib/net8.0/Microsoft.Agents.Storage.dll": {
@@ -282,12 +282,12 @@
           }
         }
       },
-      "Microsoft.Agents.Storage.Transcript/1.4.36-beta": {
+      "Microsoft.Agents.Storage.Transcript/1.4.79-beta": {
         "type": "package",
         "dependencies": {
           "Azure.Storage.Blobs": "12.26.0",
-          "Microsoft.Agents.Core": "1.4.36-beta",
-          "Microsoft.Bcl.AsyncInterfaces": "10.0.1"
+          "Microsoft.Agents.Core": "1.4.79-beta",
+          "Microsoft.Bcl.AsyncInterfaces": "10.0.2"
         },
         "compile": {
           "lib/net8.0/Microsoft.Agents.Storage.Transcript.dll": {
@@ -300,7 +300,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.22": {
+      "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.23": {
         "type": "package",
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "7.1.2"
@@ -319,7 +319,7 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Microsoft.Bcl.AsyncInterfaces/10.0.1": {
+      "Microsoft.Bcl.AsyncInterfaces/10.0.3": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
@@ -332,7 +332,7 @@
           }
         }
       },
-      "Microsoft.Bcl.Memory/10.0.1": {
+      "Microsoft.Bcl.Memory/10.0.2": {
         "type": "package",
         "compile": {
           "lib/net10.0/Microsoft.Bcl.Memory.dll": {
@@ -348,11 +348,11 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.Extensions.AI/10.1.1": {
+      "Microsoft.Extensions.AI/10.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.AI.Abstractions": "10.1.1",
-          "System.Numerics.Tensors": "10.0.1"
+          "Microsoft.Extensions.AI.Abstractions": "10.3.0",
+          "System.Numerics.Tensors": "10.0.3"
         },
         "compile": {
           "lib/net10.0/Microsoft.Extensions.AI.dll": {
@@ -365,7 +365,7 @@
           }
         }
       },
-      "Microsoft.Extensions.AI.Abstractions/10.1.1": {
+      "Microsoft.Extensions.AI.Abstractions/10.3.0": {
         "type": "package",
         "compile": {
           "lib/net10.0/Microsoft.Extensions.AI.Abstractions.dll": {
@@ -378,10 +378,10 @@
           }
         }
       },
-      "Microsoft.Extensions.AI.OpenAI/10.1.1-preview.1.25612.2": {
+      "Microsoft.Extensions.AI.OpenAI/10.3.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.AI.Abstractions": "10.1.1",
+          "Microsoft.Extensions.AI.Abstractions": "10.3.0",
           "OpenAI": "2.8.0"
         },
         "compile": {
@@ -395,7 +395,7 @@
           }
         }
       },
-      "Microsoft.Extensions.Configuration.EnvironmentVariables/10.0.2": {
+      "Microsoft.Extensions.Configuration.EnvironmentVariables/10.0.3": {
         "type": "package",
         "compile": {
           "lib/net10.0/_._": {
@@ -411,7 +411,7 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Configuration.Json/10.0.2": {
+      "Microsoft.Extensions.Configuration.Json/10.0.3": {
         "type": "package",
         "compile": {
           "lib/net10.0/_._": {
@@ -589,10 +589,10 @@
           }
         }
       },
-      "ModelContextProtocol/0.6.0-preview.1": {
+      "ModelContextProtocol/0.8.0-preview.1": {
         "type": "package",
         "dependencies": {
-          "ModelContextProtocol.Core": "0.6.0-preview.1"
+          "ModelContextProtocol.Core": "0.8.0-preview.1"
         },
         "compile": {
           "lib/net10.0/ModelContextProtocol.dll": {
@@ -605,10 +605,10 @@
           }
         }
       },
-      "ModelContextProtocol.Core/0.6.0-preview.1": {
+      "ModelContextProtocol.Core/0.8.0-preview.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.AI.Abstractions": "10.1.1"
+          "Microsoft.Extensions.AI.Abstractions": "10.2.0"
         },
         "compile": {
           "lib/net10.0/ModelContextProtocol.Core.dll": {
@@ -653,10 +653,10 @@
           }
         }
       },
-      "System.Configuration.ConfigurationManager/10.0.1": {
+      "System.Configuration.ConfigurationManager/10.0.2": {
         "type": "package",
         "dependencies": {
-          "System.Security.Cryptography.ProtectedData": "10.0.1"
+          "System.Security.Cryptography.ProtectedData": "10.0.2"
         },
         "compile": {
           "lib/net10.0/System.Configuration.ConfigurationManager.dll": {
@@ -705,7 +705,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "System.Memory.Data/10.0.1": {
+      "System.Memory.Data/10.0.2": {
         "type": "package",
         "compile": {
           "lib/net10.0/System.Memory.Data.dll": {
@@ -721,7 +721,7 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "System.Numerics.Tensors/10.0.1": {
+      "System.Numerics.Tensors/10.0.3": {
         "type": "package",
         "compile": {
           "lib/net10.0/System.Numerics.Tensors.dll": {
@@ -737,10 +737,10 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "System.Runtime.Caching/10.0.1": {
+      "System.Runtime.Caching/10.0.2": {
         "type": "package",
         "dependencies": {
-          "System.Configuration.ConfigurationManager": "10.0.1"
+          "System.Configuration.ConfigurationManager": "10.0.2"
         },
         "compile": {
           "lib/net10.0/System.Runtime.Caching.dll": {
@@ -762,7 +762,7 @@
           }
         }
       },
-      "System.Security.Cryptography.ProtectedData/10.0.1": {
+      "System.Security.Cryptography.ProtectedData/10.0.2": {
         "type": "package",
         "compile": {
           "lib/net10.0/System.Security.Cryptography.ProtectedData.dll": {
@@ -899,10 +899,10 @@
         "lib/netstandard2.0/Azure.Storage.Common.xml"
       ]
     },
-    "Microsoft.Agents.AI/1.0.0-preview.260108.1": {
-      "sha512": "Bz6xDOeESBsa0umOIJGVmhvFi7XCm8SMwaKdrF1IFIPmIqMngQPqFWDk3gb2ZLTnqcdsVRzhy/7rSQyM4Z6NYQ==",
+    "Microsoft.Agents.AI/1.0.0-preview.260212.1": {
+      "sha512": "s6AU3LjsgxbxjL6Rp1shWN8sUDvYK+3zybVmauul/p0pqIEfjzJEyPOzOFnBqGToBI1KIGyZesa4SlKSmGd/Sg==",
       "type": "package",
-      "path": "microsoft.agents.ai/1.0.0-preview.260108.1",
+      "path": "microsoft.agents.ai/1.0.0-preview.260212.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -918,14 +918,14 @@
         "lib/net9.0/Microsoft.Agents.AI.xml",
         "lib/netstandard2.0/Microsoft.Agents.AI.dll",
         "lib/netstandard2.0/Microsoft.Agents.AI.xml",
-        "microsoft.agents.ai.1.0.0-preview.260108.1.nupkg.sha512",
+        "microsoft.agents.ai.1.0.0-preview.260212.1.nupkg.sha512",
         "microsoft.agents.ai.nuspec"
       ]
     },
-    "Microsoft.Agents.AI.Abstractions/1.0.0-preview.260108.1": {
-      "sha512": "32IKLO9F7Yir3c9/kG+UMBssWGuhJb6dPnwEy4fYutdYPjTMA4MHX4TLSLdxZRCw5fhIP6qYWrG1Wbz0F7iC5w==",
+    "Microsoft.Agents.AI.Abstractions/1.0.0-preview.260212.1": {
+      "sha512": "N6a5m1Edxyk5Q1kEmVakvozR1inPElNTioFKs41ufbnK4MYoVX1kTcOB+mVN6Xb16Axt6i+3/fU5oLh0oM3Isg==",
       "type": "package",
-      "path": "microsoft.agents.ai.abstractions/1.0.0-preview.260108.1",
+      "path": "microsoft.agents.ai.abstractions/1.0.0-preview.260212.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -941,14 +941,14 @@
         "lib/net9.0/Microsoft.Agents.AI.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Agents.AI.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Agents.AI.Abstractions.xml",
-        "microsoft.agents.ai.abstractions.1.0.0-preview.260108.1.nupkg.sha512",
+        "microsoft.agents.ai.abstractions.1.0.0-preview.260212.1.nupkg.sha512",
         "microsoft.agents.ai.abstractions.nuspec"
       ]
     },
-    "Microsoft.Agents.AI.AzureAI/1.0.0-preview.260108.1": {
-      "sha512": "oi2D3wTA4Q4HWrFnYkioBHHn1UprpkMxZbXBj1Lc16VHnuDgp/XqIfCRJvz7Pf7eLSTab0FAiWEDUyrrdLzaNw==",
+    "Microsoft.Agents.AI.AzureAI/1.0.0-preview.260212.1": {
+      "sha512": "9L8hN0z+v8wkZSzqZHQtuqc/aOJG/UeBdFwLsXEWbx+nXNw78l9GXV+f5ZJIHjClq0DQkHsmP5JVQw0RRuyE3w==",
       "type": "package",
-      "path": "microsoft.agents.ai.azureai/1.0.0-preview.260108.1",
+      "path": "microsoft.agents.ai.azureai/1.0.0-preview.260212.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -964,14 +964,14 @@
         "lib/net9.0/Microsoft.Agents.AI.AzureAI.xml",
         "lib/netstandard2.0/Microsoft.Agents.AI.AzureAI.dll",
         "lib/netstandard2.0/Microsoft.Agents.AI.AzureAI.xml",
-        "microsoft.agents.ai.azureai.1.0.0-preview.260108.1.nupkg.sha512",
+        "microsoft.agents.ai.azureai.1.0.0-preview.260212.1.nupkg.sha512",
         "microsoft.agents.ai.azureai.nuspec"
       ]
     },
-    "Microsoft.Agents.Authentication/1.4.36-beta": {
-      "sha512": "0ruOhDOCFbticNTGfB/0c7U5Id+LwIpCUduhx7vv/UKm2eNycjvCW2eo2er5mIqseKxYwcZ8X/5W2pwDHDuPfg==",
+    "Microsoft.Agents.Authentication/1.4.79-beta": {
+      "sha512": "RZ0BO5Mx3a2UNMZpyPVwqV8H4HRxb+AKUh0ssltGT3bD2VkSkLWdCwHUdo4Wb40TdTL7B5wExMuF3sOoTvvL5w==",
       "type": "package",
-      "path": "microsoft.agents.authentication/1.4.36-beta",
+      "path": "microsoft.agents.authentication/1.4.79-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -981,14 +981,14 @@
         "lib/net8.0/Microsoft.Agents.Authentication.xml",
         "lib/netstandard2.0/Microsoft.Agents.Authentication.dll",
         "lib/netstandard2.0/Microsoft.Agents.Authentication.xml",
-        "microsoft.agents.authentication.1.4.36-beta.nupkg.sha512",
+        "microsoft.agents.authentication.1.4.79-beta.nupkg.sha512",
         "microsoft.agents.authentication.nuspec"
       ]
     },
-    "Microsoft.Agents.Builder/1.4.36-beta": {
-      "sha512": "/Vis49XGrDjej+MvLqvsF/l1T59z98bpcjf8+qBfjWgI7a380yVDQa5ylXYHMFnxb9ZclAvBNMyKgtWqNYKx9g==",
+    "Microsoft.Agents.Builder/1.4.79-beta": {
+      "sha512": "vczrOT+/1aBfs8F7icBV+nojBFonEirqaWZwZoBw8estX35PKs5j0sTnDsR5NgEC+p5jE0eCHDIbqrV2azKT7w==",
       "type": "package",
-      "path": "microsoft.agents.builder/1.4.36-beta",
+      "path": "microsoft.agents.builder/1.4.79-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -998,14 +998,14 @@
         "lib/net8.0/Microsoft.Agents.Builder.xml",
         "lib/netstandard2.0/Microsoft.Agents.Builder.dll",
         "lib/netstandard2.0/Microsoft.Agents.Builder.xml",
-        "microsoft.agents.builder.1.4.36-beta.nupkg.sha512",
+        "microsoft.agents.builder.1.4.79-beta.nupkg.sha512",
         "microsoft.agents.builder.nuspec"
       ]
     },
-    "Microsoft.Agents.Connector/1.4.36-beta": {
-      "sha512": "WPb0oI4g1WD8IzUPjZgdwWU6UNuRAgFMW+OzAXSQ7krB9jADjkCr79r3vMWf5/Nq1Bx4CUEyzirIPNJrPsrBdQ==",
+    "Microsoft.Agents.Connector/1.4.79-beta": {
+      "sha512": "VoRsCJWkTeH9IraAHUk1ZObnHPZDWrfkASQP7p6NiwmD9Z30EKzuwhPe7BIjDX2jw41TStr++lbi/h+NvE97Iw==",
       "type": "package",
-      "path": "microsoft.agents.connector/1.4.36-beta",
+      "path": "microsoft.agents.connector/1.4.79-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1015,14 +1015,14 @@
         "lib/net8.0/Microsoft.Agents.Connector.xml",
         "lib/netstandard2.0/Microsoft.Agents.Connector.dll",
         "lib/netstandard2.0/Microsoft.Agents.Connector.xml",
-        "microsoft.agents.connector.1.4.36-beta.nupkg.sha512",
+        "microsoft.agents.connector.1.4.79-beta.nupkg.sha512",
         "microsoft.agents.connector.nuspec"
       ]
     },
-    "Microsoft.Agents.Core/1.4.36-beta": {
-      "sha512": "cnrLJTzcKJuyPdakMHBq9oBe/VqYr6QYARb85ZxvSt5vuD/V7bLcgTHkXrFxi4pznw0tnNM/IZOSjCfZBNXE9g==",
+    "Microsoft.Agents.Core/1.4.79-beta": {
+      "sha512": "sxqzwNMyMobS3BBfQLEzN3Gy/QXg3d6PGk1ddiA0JVXCbBW2Zv0Nsfkbxc0oXNSHCsZAOIM/xACn20TE2mCElA==",
       "type": "package",
-      "path": "microsoft.agents.core/1.4.36-beta",
+      "path": "microsoft.agents.core/1.4.79-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1033,14 +1033,14 @@
         "lib/net8.0/Microsoft.Agents.Core.xml",
         "lib/netstandard2.0/Microsoft.Agents.Core.dll",
         "lib/netstandard2.0/Microsoft.Agents.Core.xml",
-        "microsoft.agents.core.1.4.36-beta.nupkg.sha512",
+        "microsoft.agents.core.1.4.79-beta.nupkg.sha512",
         "microsoft.agents.core.nuspec"
       ]
     },
-    "Microsoft.Agents.Hosting.AspNetCore/1.4.36-beta": {
-      "sha512": "gON+biGmT1ZQC7yUkVKPPCS5fqIy7/Dgrt5QrmD5/GVIVdZv16dCycXcEJAOb3bXh4MAtNt2ILaYhhYOIgqprQ==",
+    "Microsoft.Agents.Hosting.AspNetCore/1.4.79-beta": {
+      "sha512": "DMB+o5y00PkPK/dj8vkFFf3YzPZ0fH5yLRnHMBRnwB41Je8KDUZTpDjTT5GFlMN2M2RWZtdA06ws+t1xGYWnjw==",
       "type": "package",
-      "path": "microsoft.agents.hosting.aspnetcore/1.4.36-beta",
+      "path": "microsoft.agents.hosting.aspnetcore/1.4.79-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1048,14 +1048,14 @@
         "agent_icon.png",
         "lib/net8.0/Microsoft.Agents.Hosting.AspNetCore.dll",
         "lib/net8.0/Microsoft.Agents.Hosting.AspNetCore.xml",
-        "microsoft.agents.hosting.aspnetcore.1.4.36-beta.nupkg.sha512",
+        "microsoft.agents.hosting.aspnetcore.1.4.79-beta.nupkg.sha512",
         "microsoft.agents.hosting.aspnetcore.nuspec"
       ]
     },
-    "Microsoft.Agents.Storage/1.4.36-beta": {
-      "sha512": "I8Dflt9yJKQF1GKGPGl6/SdOkYBrXiPHs3soMpjQHNVXfHxgsaIa6l1JSExqHY9nglglTqTxm2TAZVZN41jEIg==",
+    "Microsoft.Agents.Storage/1.4.79-beta": {
+      "sha512": "3rJf0e/jqAF4DavHhVCp7ARrfYb/j672Z+ePlQVgy/a36EMAGSyImeTvdJ9lL6MaVNbnj5QcP70Z1xXY8f1eNQ==",
       "type": "package",
-      "path": "microsoft.agents.storage/1.4.36-beta",
+      "path": "microsoft.agents.storage/1.4.79-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1065,14 +1065,14 @@
         "lib/net8.0/Microsoft.Agents.Storage.xml",
         "lib/netstandard2.0/Microsoft.Agents.Storage.dll",
         "lib/netstandard2.0/Microsoft.Agents.Storage.xml",
-        "microsoft.agents.storage.1.4.36-beta.nupkg.sha512",
+        "microsoft.agents.storage.1.4.79-beta.nupkg.sha512",
         "microsoft.agents.storage.nuspec"
       ]
     },
-    "Microsoft.Agents.Storage.Transcript/1.4.36-beta": {
-      "sha512": "cXqezLWjFesItGHIDDd03hrNfFdw6eyrbe5XBDzSsSKWNegRaDxm258VsMNxVaCvd/SRswiYqrG8bkIIbdoT5w==",
+    "Microsoft.Agents.Storage.Transcript/1.4.79-beta": {
+      "sha512": "LS2U/PHZD1dcJVB5vWJQv0TAKgFQ0WllCU9WQpg1vBdxU/q/oyZgjsNQpdg5Suom0DqJeHOrT6K44WPyDLYxcQ==",
       "type": "package",
-      "path": "microsoft.agents.storage.transcript/1.4.36-beta",
+      "path": "microsoft.agents.storage.transcript/1.4.79-beta",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1082,14 +1082,14 @@
         "lib/net8.0/Microsoft.Agents.Storage.Transcript.xml",
         "lib/netstandard2.0/Microsoft.Agents.Storage.Transcript.dll",
         "lib/netstandard2.0/Microsoft.Agents.Storage.Transcript.xml",
-        "microsoft.agents.storage.transcript.1.4.36-beta.nupkg.sha512",
+        "microsoft.agents.storage.transcript.1.4.79-beta.nupkg.sha512",
         "microsoft.agents.storage.transcript.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.22": {
-      "sha512": "3lqhBK+t4u8Ajl2je5UC9jCoDI+8zLz/YBVjwxQKfFF9NyzACf4QQmlmKnpH/LdkVSxCjLwvJ1ko4k0EAgy8cg==",
+    "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.23": {
+      "sha512": "eGgCDqVxCO1mgltQHgM9kwAVwVfVOf0azPMcysCXONgJCQwb4bOM2OnKTKCJ2gn3PXQkRfEElHRFXrpR87Qx5A==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authentication.jwtbearer/8.0.22",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/8.0.23",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1097,14 +1097,14 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
         "lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
-        "microsoft.aspnetcore.authentication.jwtbearer.8.0.22.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.8.0.23.nupkg.sha512",
         "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
-    "Microsoft.Bcl.AsyncInterfaces/10.0.1": {
-      "sha512": "E1HSLkPHXEO30JEij2pWbOuzz1Z5ND4a5l7IP1T2RgQuE0a0NzEIvtO64RNy3Otn6PFezbT80cfm3M/Cgt70PA==",
+    "Microsoft.Bcl.AsyncInterfaces/10.0.3": {
+      "sha512": "TV62UsrJZPX6gbt3c4WrtXh7bmaDIcMqf9uft1cc4L6gJXOU07hDGEh+bFQh/L2Az0R1WVOkiT66lFqS6G2NmA==",
       "type": "package",
-      "path": "microsoft.bcl.asyncinterfaces/10.0.1",
+      "path": "microsoft.bcl.asyncinterfaces/10.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1119,15 +1119,15 @@
         "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.xml",
         "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
         "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.xml",
-        "microsoft.bcl.asyncinterfaces.10.0.1.nupkg.sha512",
+        "microsoft.bcl.asyncinterfaces.10.0.3.nupkg.sha512",
         "microsoft.bcl.asyncinterfaces.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Bcl.Memory/10.0.1": {
-      "sha512": "Emq0nlyQYQZzO/kPh8Ed/wQ5fFpiq2SNrHCJ4W4h0uSxwj8OBQwdjwVgwObqGxm1UumBNGulFX2Yxf+Icz0o/Q==",
+    "Microsoft.Bcl.Memory/10.0.2": {
+      "sha512": "KLJb/zKv+zvkeSJloY0WbGbqj6qY2Gxd2s4YhzzEhO65OLup5N0SmT97lnfxuiJnqroSkT6opzVfXYGZ3P3zdw==",
       "type": "package",
-      "path": "microsoft.bcl.memory/10.0.1",
+      "path": "microsoft.bcl.memory/10.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1150,15 +1150,15 @@
         "lib/netstandard2.0/Microsoft.Bcl.Memory.xml",
         "lib/netstandard2.1/Microsoft.Bcl.Memory.dll",
         "lib/netstandard2.1/Microsoft.Bcl.Memory.xml",
-        "microsoft.bcl.memory.10.0.1.nupkg.sha512",
+        "microsoft.bcl.memory.10.0.2.nupkg.sha512",
         "microsoft.bcl.memory.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.AI/10.1.1": {
-      "sha512": "hc2OOFz4edXXWOoNLyMaCAdZvyT9vENKSZKqi8q2meDagPr3iMDVXuQlYf0gnCGBIpGvXwx7Aq9feeLMZewh6g==",
+    "Microsoft.Extensions.AI/10.3.0": {
+      "sha512": "zJYAHVM+zA74MNHifAyYE/jnfilI5WOnyQqnYobQZ5JW1VRSMGfQl/oqYdK3p2AdQOX8VcxSW6C+UsZYnpFB+A==",
       "type": "package",
-      "path": "microsoft.extensions.ai/10.1.1",
+      "path": "microsoft.extensions.ai/10.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1174,14 +1174,14 @@
         "lib/net9.0/Microsoft.Extensions.AI.xml",
         "lib/netstandard2.0/Microsoft.Extensions.AI.dll",
         "lib/netstandard2.0/Microsoft.Extensions.AI.xml",
-        "microsoft.extensions.ai.10.1.1.nupkg.sha512",
+        "microsoft.extensions.ai.10.3.0.nupkg.sha512",
         "microsoft.extensions.ai.nuspec"
       ]
     },
-    "Microsoft.Extensions.AI.Abstractions/10.1.1": {
-      "sha512": "cgj8iHv4JwUpcPANZ0oLILz146Y1Oa+l280b1c1a3DjwZflH9nmYcrX952YUuqftz2sheAC2TPCGcEa6unKQgQ==",
+    "Microsoft.Extensions.AI.Abstractions/10.3.0": {
+      "sha512": "hDjDvUERvUH3HBMs2MDusOcGJBjAHOG5pJIU2x/HZEa4e1UthNKt89cwMi3B+ogJo6skki1XFjfgGN3ksnVqvQ==",
       "type": "package",
-      "path": "microsoft.extensions.ai.abstractions/10.1.1",
+      "path": "microsoft.extensions.ai.abstractions/10.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1197,14 +1197,14 @@
         "lib/net9.0/Microsoft.Extensions.AI.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.AI.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.AI.Abstractions.xml",
-        "microsoft.extensions.ai.abstractions.10.1.1.nupkg.sha512",
+        "microsoft.extensions.ai.abstractions.10.3.0.nupkg.sha512",
         "microsoft.extensions.ai.abstractions.nuspec"
       ]
     },
-    "Microsoft.Extensions.AI.OpenAI/10.1.1-preview.1.25612.2": {
-      "sha512": "W3U9PQE9dPY6uFWAqnxPyk5crGx7SB3Siw1ihb4pHvfwm2fOb5JyWTVxrFJjIeTxSJsSTIm2T7XNWc+A1v+Suw==",
+    "Microsoft.Extensions.AI.OpenAI/10.3.0": {
+      "sha512": "+TAHAJy2+m5zazGLuwz6PbcMu6EmhxR+LmRhmz8+O3BBnfuGWVJOBGDeKAaSvIQDzKFYCLOrE4ZH0IbdLHVlKw==",
       "type": "package",
-      "path": "microsoft.extensions.ai.openai/10.1.1-preview.1.25612.2",
+      "path": "microsoft.extensions.ai.openai/10.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1220,14 +1220,14 @@
         "lib/net9.0/Microsoft.Extensions.AI.OpenAI.xml",
         "lib/netstandard2.0/Microsoft.Extensions.AI.OpenAI.dll",
         "lib/netstandard2.0/Microsoft.Extensions.AI.OpenAI.xml",
-        "microsoft.extensions.ai.openai.10.1.1-preview.1.25612.2.nupkg.sha512",
+        "microsoft.extensions.ai.openai.10.3.0.nupkg.sha512",
         "microsoft.extensions.ai.openai.nuspec"
       ]
     },
-    "Microsoft.Extensions.Configuration.EnvironmentVariables/10.0.2": {
-      "sha512": "Y+wv67KiW7q0+PxAg3osjohrddgxl/7mMriRZPBcYUgOzOq/O2rTvAXbuy1vINIarT2YmENfePaDcu2KgvIDXw==",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables/10.0.3": {
+      "sha512": "jBm6bpc5OM2VHM/QYVUyD78xweFzble6UsIt7GUnQAwCm07hktFaUBtRfO7viLGg5qPbc4ByteNB7DeVAYNSfA==",
       "type": "package",
-      "path": "microsoft.extensions.configuration.environmentvariables/10.0.2",
+      "path": "microsoft.extensions.configuration.environmentvariables/10.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1248,15 +1248,15 @@
         "lib/net9.0/Microsoft.Extensions.Configuration.EnvironmentVariables.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.EnvironmentVariables.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.EnvironmentVariables.xml",
-        "microsoft.extensions.configuration.environmentvariables.10.0.2.nupkg.sha512",
+        "microsoft.extensions.configuration.environmentvariables.10.0.3.nupkg.sha512",
         "microsoft.extensions.configuration.environmentvariables.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Configuration.Json/10.0.2": {
-      "sha512": "ovjOVr+rNxOT249iezwihlPNMaIJdBC6PMGeMnzhkm5EoKJWFjp3mmvtndfHY6A88X4wulXlidMhmjX8v6V/aw==",
+    "Microsoft.Extensions.Configuration.Json/10.0.3": {
+      "sha512": "mGGMOA9nkET8OVsQfS41o66eWkckBzNHJK6+5VbLQ2YdyqKphcv27uDZxLf4exSl+5QxLnHkN+W/4qEDgyvCPA==",
       "type": "package",
-      "path": "microsoft.extensions.configuration.json/10.0.2",
+      "path": "microsoft.extensions.configuration.json/10.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1279,7 +1279,7 @@
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Json.xml",
         "lib/netstandard2.1/Microsoft.Extensions.Configuration.Json.dll",
         "lib/netstandard2.1/Microsoft.Extensions.Configuration.Json.xml",
-        "microsoft.extensions.configuration.json.10.0.2.nupkg.sha512",
+        "microsoft.extensions.configuration.json.10.0.3.nupkg.sha512",
         "microsoft.extensions.configuration.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -1528,10 +1528,10 @@
         "microsoft.identitymodel.validators.nuspec"
       ]
     },
-    "ModelContextProtocol/0.6.0-preview.1": {
-      "sha512": "onUtGV9yny1rFZQ1qGUp6XPJBB2VxvWXvEioq8+/8hYOX6zEoc/Mc4tX8u7KRhU1mLss48jMh5DHFBMKifMiVw==",
+    "ModelContextProtocol/0.8.0-preview.1": {
+      "sha512": "hDhRtuMa2XBI70X/aIyvDv8/b5HIlRGenMiAk5LkM/8dhBuYNYBpbCwCFF+D2l0g8wa24WddPA3ciI55Uc3+/A==",
       "type": "package",
-      "path": "modelcontextprotocol/0.6.0-preview.1",
+      "path": "modelcontextprotocol/0.8.0-preview.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1545,14 +1545,14 @@
         "lib/netstandard2.0/ModelContextProtocol.dll",
         "lib/netstandard2.0/ModelContextProtocol.xml",
         "logo.png",
-        "modelcontextprotocol.0.6.0-preview.1.nupkg.sha512",
+        "modelcontextprotocol.0.8.0-preview.1.nupkg.sha512",
         "modelcontextprotocol.nuspec"
       ]
     },
-    "ModelContextProtocol.Core/0.6.0-preview.1": {
-      "sha512": "vjpbeJL7O4kNAgwv6wZtqlAAUX/tWaYLtbBzENDablIQfI1bH2tYTD/eK/6JvxP+Qp1H/lXaMvuRM6wohAzauA==",
+    "ModelContextProtocol.Core/0.8.0-preview.1": {
+      "sha512": "BceTXxLV5d16gIJHiGvHPLlQARat3u53FuJv+sZfO+L7BGbdFwTbUJxUS0/gCpxmwd8GGnCjhT5Qdfw1+m9WJw==",
       "type": "package",
-      "path": "modelcontextprotocol.core/0.6.0-preview.1",
+      "path": "modelcontextprotocol.core/0.8.0-preview.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1567,7 +1567,7 @@
         "lib/netstandard2.0/ModelContextProtocol.Core.dll",
         "lib/netstandard2.0/ModelContextProtocol.Core.xml",
         "logo.png",
-        "modelcontextprotocol.core.0.6.0-preview.1.nupkg.sha512",
+        "modelcontextprotocol.core.0.8.0-preview.1.nupkg.sha512",
         "modelcontextprotocol.core.nuspec"
       ]
     },
@@ -1610,10 +1610,10 @@
         "system.clientmodel.nuspec"
       ]
     },
-    "System.Configuration.ConfigurationManager/10.0.1": {
-      "sha512": "HfOAIlSA8OuaxBZD6xjsUWhtB0KdKSWEfRId8gSGveLUjuP6G8IxfiFgJNxaiRIEC1kx4pSvz3Em5xW/J6LLxA==",
+    "System.Configuration.ConfigurationManager/10.0.2": {
+      "sha512": "UpBPpVzF+xbB3GsBrraPvlYCwUiOhs+RLxnTMKLqDs2gNNaAtxQRlKjXfMV3zxE+hiQkGId5olZ+9tE6xXHdwQ==",
       "type": "package",
-      "path": "system.configuration.configurationmanager/10.0.1",
+      "path": "system.configuration.configurationmanager/10.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1634,7 +1634,7 @@
         "lib/net9.0/System.Configuration.ConfigurationManager.xml",
         "lib/netstandard2.0/System.Configuration.ConfigurationManager.dll",
         "lib/netstandard2.0/System.Configuration.ConfigurationManager.xml",
-        "system.configuration.configurationmanager.10.0.1.nupkg.sha512",
+        "system.configuration.configurationmanager.10.0.2.nupkg.sha512",
         "system.configuration.configurationmanager.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -1695,10 +1695,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Memory.Data/10.0.1": {
-      "sha512": "BZC4mhdL569AXV56ep9YO6ShjhxFXGP7SwVX0Bc/e0dJPWnS6aBEXZJXqh64RVx8HquqWHkJUINBydLRQ1yq0g==",
+    "System.Memory.Data/10.0.2": {
+      "sha512": "kNHLx0b1SgebHd+YLzjDNgrWcdaEufrAqR9jW9dzziil2Ez2Hx+1X+ya0ATWX8U2Rd6dLP/6neODTsUbCKPb4A==",
       "type": "package",
-      "path": "system.memory.data/10.0.1",
+      "path": "system.memory.data/10.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1719,15 +1719,15 @@
         "lib/net9.0/System.Memory.Data.xml",
         "lib/netstandard2.0/System.Memory.Data.dll",
         "lib/netstandard2.0/System.Memory.Data.xml",
-        "system.memory.data.10.0.1.nupkg.sha512",
+        "system.memory.data.10.0.2.nupkg.sha512",
         "system.memory.data.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Numerics.Tensors/10.0.1": {
-      "sha512": "1ERX7TgHGP8Cs3sHWp0Vk6kg9xVQSgLsumb5qw1KNiClUC5cs4lKZ1LzPHI/ZYY3at7EX2nx4uWU6SGSi2V8Kg==",
+    "System.Numerics.Tensors/10.0.3": {
+      "sha512": "calKQ5nqV98lVRSCV7KFrlmw7nE7z6qIBWnMP+f7xAzY9H1cO15zJmkuZYM9RxYXDzQyI60/+dXd65UUY4HZFQ==",
       "type": "package",
-      "path": "system.numerics.tensors/10.0.1",
+      "path": "system.numerics.tensors/10.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1748,15 +1748,15 @@
         "lib/net9.0/System.Numerics.Tensors.xml",
         "lib/netstandard2.0/System.Numerics.Tensors.dll",
         "lib/netstandard2.0/System.Numerics.Tensors.xml",
-        "system.numerics.tensors.10.0.1.nupkg.sha512",
+        "system.numerics.tensors.10.0.3.nupkg.sha512",
         "system.numerics.tensors.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Runtime.Caching/10.0.1": {
-      "sha512": "bjF0qtW+P6QEDp+HqaUVfYIpPSl5u0rd5hIq0y1yMqRUc7EJ16xYE9marzNGhTH3h0UNMTInDgmR9qFFKEiIMg==",
+    "System.Runtime.Caching/10.0.2": {
+      "sha512": "AGEWTfcRquE3Ggd1KgZcc7Y0He3dvDWv+LEtSp/Az582APXoYj/LjxLMEA2jT3wFE8zgBjwbU/apE5kDanfRqw==",
       "type": "package",
-      "path": "system.runtime.caching/10.0.1",
+      "path": "system.runtime.caching/10.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1786,15 +1786,15 @@
         "runtimes/win/lib/net8.0/System.Runtime.Caching.xml",
         "runtimes/win/lib/net9.0/System.Runtime.Caching.dll",
         "runtimes/win/lib/net9.0/System.Runtime.Caching.xml",
-        "system.runtime.caching.10.0.1.nupkg.sha512",
+        "system.runtime.caching.10.0.2.nupkg.sha512",
         "system.runtime.caching.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Security.Cryptography.ProtectedData/10.0.1": {
-      "sha512": "9SqHNq+lAjZeyPcm69FTQEjr+wsRYvkS3aW8yxoEndVYwDRkCrsP/44QPqpWHwzevoX26rkOoQ6kr7GZWngw2A==",
+    "System.Security.Cryptography.ProtectedData/10.0.2": {
+      "sha512": "me7W69hkjdu5EzHXCQSXv9OS3uAkMXT26oZuWTaabeoO5BPxSVuRVJ2FSfIW8xyGxBb6mKCE6ZKg7TLk3IzJBQ==",
       "type": "package",
-      "path": "system.security.cryptography.protecteddata/10.0.1",
+      "path": "system.security.cryptography.protecteddata/10.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1821,7 +1821,7 @@
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
-        "system.security.cryptography.protecteddata.10.0.1.nupkg.sha512",
+        "system.security.cryptography.protecteddata.10.0.2.nupkg.sha512",
         "system.security.cryptography.protecteddata.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -1929,7 +1929,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
