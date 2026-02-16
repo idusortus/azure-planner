@@ -6,9 +6,11 @@ Budget-friendly Azure POC workspace. 3 live applications running for ~$5-10/mont
 
 | POC | Stack | API | Frontend |
 |-----|-------|-----|----------|
-| **TodoApp** | .NET 10 Aspire + Vanilla JS | [API](https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io) | [SWA](https://happy-desert-065eace10.6.azurestaticapps.net) |
+| **TodoApp** | .NET 10 Aspire + 3 frontend options* | [API](https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io) | [SWA](https://happy-desert-065eace10.6.azurestaticapps.net) |
 | **LeaveACommentApp** | .NET 10 Aspire + Vanilla JS | [API](https://leave-a-comment-api.politeriver-ded1b871.centralus.azurecontainerapps.io) | [SWA](https://nice-sand-0b0628510.6.azurestaticapps.net) |
 | **FriendsPrediction** | .NET 10 Aspire + Vanilla JS | [API](https://friends-prediction-api.politeriver-ded1b871.centralus.azurecontainerapps.io) | [SWA](https://kind-pebble-0eeaa2310.2.azurestaticapps.net) |
+
+\* **TodoApp demonstrates 3 frontend approaches**: Vanilla JS (deployed), React, and React Native. See [TestPOCApp/TodoApp/COMPLETE_GUIDE.md](TestPOCApp/TodoApp/COMPLETE_GUIDE.md)
 
 ## Shared Infrastructure
 
@@ -41,6 +43,8 @@ azd-bicep/                     # Bicep templates (optional IaC)
 ```
 
 ## Getting Started
+
+**🌟 Basic Deployable Framework**: See [TestPOCApp/TodoApp/COMPLETE_GUIDE.md](TestPOCApp/TodoApp/COMPLETE_GUIDE.md) for a complete, repeatable process demonstrating three frontend approaches (Vanilla JS, React, React Native) with .NET Aspire backend.
 
 **Deploy a new POC**: Read [docs/MASTER.md](docs/MASTER.md) — covers the full process from local app to deployed Azure resources.
 
