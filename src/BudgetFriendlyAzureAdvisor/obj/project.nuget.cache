@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NRH9R7pIEtU=",
+  "dgSpecHash": "lWbNPtsdqkE=",
   "success": true,
-  "projectFilePath": "c:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
+  "projectFilePath": "C:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\iduso\\.nuget\\packages\\azure.ai.projects\\1.2.0-beta.5\\azure.ai.projects.1.2.0-beta.5.nupkg.sha512",
     "C:\\Users\\iduso\\.nuget\\packages\\azure.ai.projects.openai\\1.0.0-beta.5\\azure.ai.projects.openai.1.0.0-beta.5.nupkg.sha512",
@@ -55,9 +55,9 @@
       "code": "NU1510",
       "level": "Warning",
       "message": "PackageReference Microsoft.Extensions.Configuration.EnvironmentVariables will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "projectPath": "c:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
+      "projectPath": "C:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
       "warningLevel": 1,
-      "filePath": "c:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
+      "filePath": "C:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
       "libraryId": "Microsoft.Extensions.Configuration.EnvironmentVariables",
       "targetGraphs": [
         "net10.0"
@@ -67,9 +67,9 @@
       "code": "NU1510",
       "level": "Warning",
       "message": "PackageReference Microsoft.Extensions.Configuration.Json will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "projectPath": "c:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
+      "projectPath": "C:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
       "warningLevel": 1,
-      "filePath": "c:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
+      "filePath": "C:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
       "libraryId": "Microsoft.Extensions.Configuration.Json",
       "targetGraphs": [
         "net10.0"

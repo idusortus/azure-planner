@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj": {}
+    "C:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj": {}
   },
   "projects": {
-    "c:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj": {
+    "C:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
+        "projectUniqueName": "C:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
         "projectName": "BudgetFriendlyAzureAdvisor",
-        "projectPath": "c:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
+        "projectPath": "C:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\BudgetFriendlyAzureAdvisor.csproj",
         "packagesPath": "C:\\Users\\iduso\\.nuget\\packages\\",
-        "outputPath": "c:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\obj\\",
+        "outputPath": "C:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\iduso\\AppData\\Roaming\\NuGet\\NuGet.Config"
