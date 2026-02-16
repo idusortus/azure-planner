@@ -87,7 +87,7 @@ az containerapp create \
   --ingress external \
   --target-port 8080 \
   --env-vars \
-    "ConnectionStrings__TodoDb=Server=tcp:dev-wiscodev.database.windows.net,1433;Database=todo-app-db;User ID=BryceAndConrad;Password=Tolerance0715#!;Encrypt=True;" \
+    "ConnectionStrings__TodoDb=Server=tcp:dev-wiscodev.database.windows.net,1433;Database=sandbox;User ID=BryceAndConrad;Password=<PASSWORD>;Encrypt=True;" \
   --cpu 0.5 \
   --memory 1.0Gi \
   --min-replicas 0 \

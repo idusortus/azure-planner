@@ -32,26 +32,26 @@ Instead of running the application via `dotnet run` or executing the `.exe` dire
 Open PowerShell or Command Prompt:
 
 ```powershell
-cd c:\dev\tools\az-devops\src\BudgetFriendlyAzureAdvisor
+cd c:\dev\side-projects\azure-planner\src\BudgetFriendlyAzureAdvisor
 dotnet build -c Release
 ```
 
 The compiled DLL will be located at:
 ```
-c:\dev\tools\az-devops\src\BudgetFriendlyAzureAdvisor\bin\Release\net10.0\BudgetFriendlyAzureAdvisor.dll
+c:\dev\side-projects\azure-planner\src\BudgetFriendlyAzureAdvisor\bin\Release\net10.0\BudgetFriendlyAzureAdvisor.dll
 ```
 
 ### Step 2: Run via DLL
 
 **HTTP Server Mode (Default):**
 ```powershell
-cd c:\dev\tools\az-devops\src\BudgetFriendlyAzureAdvisor\bin\Release\net10.0
+cd c:\dev\side-projects\azure-planner\src\BudgetFriendlyAzureAdvisor\bin\Release\net10.0
 dotnet BudgetFriendlyAzureAdvisor.dll
 ```
 
 **MCP Server Mode (for GitHub Copilot):**
 ```powershell
-cd c:\dev\tools\az-devops\src\BudgetFriendlyAzureAdvisor\bin\Release\net10.0
+cd c:\dev\side-projects\azure-planner\src\BudgetFriendlyAzureAdvisor\bin\Release\net10.0
 dotnet BudgetFriendlyAzureAdvisor.dll --mcp
 ```
 
@@ -65,7 +65,7 @@ Update `.github/mcp-server-config.json` to use the DLL path:
     "azure-advisor": {
       "command": "dotnet",
       "args": [
-        "c:\\dev\\tools\\az-devops\\src\\BudgetFriendlyAzureAdvisor\\bin\\Release\\net10.0\\BudgetFriendlyAzureAdvisor.dll",
+        "c:\\dev\\side-projects\\azure-planner\\src\\BudgetFriendlyAzureAdvisor\\bin\\Release\\net10.0\\BudgetFriendlyAzureAdvisor.dll",
         "--mcp"
       ],
       "name": "BudgetFriendlyAzureAdvisor"
@@ -109,15 +109,15 @@ Update `.vscode/launch.json` to run the DLL instead of using `dotnet run`:
 For cleaner path management:
 
 ```powershell
-cd c:\dev\tools\az-devops\src\BudgetFriendlyAzureAdvisor
+cd c:\dev\side-projects\azure-planner\src\BudgetFriendlyAzureAdvisor
 dotnet publish -c Release -o publish
 ```
 
-This creates: `c:\dev\tools\az-devops\src\BudgetFriendlyAzureAdvisor\publish\BudgetFriendlyAzureAdvisor.dll`
+This creates: `c:\dev\side-projects\azure-planner\src\BudgetFriendlyAzureAdvisor\publish\BudgetFriendlyAzureAdvisor.dll`
 
 **Run published version:**
 ```powershell
-cd c:\dev\tools\az-devops\src\BudgetFriendlyAzureAdvisor\publish
+cd c:\dev\side-projects\azure-planner\src\BudgetFriendlyAzureAdvisor\publish
 dotnet BudgetFriendlyAzureAdvisor.dll
 ```
 
@@ -134,7 +134,7 @@ dotnet BudgetFriendlyAzureAdvisor.dll
 Whenever you modify the source code, you must **rebuild**:
 
 ```powershell
-cd c:\dev\tools\az-devops\src\BudgetFriendlyAzureAdvisor
+cd c:\dev\side-projects\azure-planner\src\BudgetFriendlyAzureAdvisor
 dotnet build -c Release
 ```
 
@@ -149,7 +149,7 @@ dotnet publish -c Release -o publish
 
 ### Test 1: HTTP Server Mode
 ```powershell
-cd c:\dev\tools\az-devops\src\BudgetFriendlyAzureAdvisor\bin\Release\net10.0
+cd c:\dev\side-projects\azure-planner\src\BudgetFriendlyAzureAdvisor\bin\Release\net10.0
 dotnet BudgetFriendlyAzureAdvisor.dll
 ```
 
@@ -166,7 +166,7 @@ dotnet BudgetFriendlyAzureAdvisor.dll
 
 ### Test 2: MCP Server Mode
 ```powershell
-cd c:\dev\tools\az-devops\src\BudgetFriendlyAzureAdvisor\bin\Release\net10.0
+cd c:\dev\side-projects\azure-planner\src\BudgetFriendlyAzureAdvisor\bin\Release\net10.0
 dotnet BudgetFriendlyAzureAdvisor.dll --mcp
 ```
 
@@ -195,7 +195,7 @@ curl -X POST http://localhost:8087 `
 
 **Solution:**
 ```powershell
-cd c:\dev\tools\az-devops\src\BudgetFriendlyAzureAdvisor
+cd c:\dev\side-projects\azure-planner\src\BudgetFriendlyAzureAdvisor
 dotnet build -c Release
 ```
 

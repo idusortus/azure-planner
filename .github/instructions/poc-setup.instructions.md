@@ -12,8 +12,8 @@ This workspace uses a standardized approach for creating budget-friendly Azure P
 
 - **Infrastructure**: Bash scripts in `apps/{poc-name}/` provision Azure resources
 - **Application**: .NET 10 Aspire solutions with WebAPI + JavaScript SPA
-- **Database**: Azure SQL Serverless on shared SQL Server (`dev-wiscodev`)
-- **Deployment**: Azure Container Apps + Static Web Apps via `azd up`
+- **Database**: Azure SQL Serverless on shared SQL Server (`dev-wiscodev`), shared `sandbox` database with schema-per-POC isolation
+- **Deployment**: Azure Container Apps + Static Web Apps via manual Azure CLI (see `docs/MASTER.md`)
 
 ## Infrastructure Scripts
 
@@ -22,7 +22,7 @@ Each POC folder should contain setup scripts. Reference `apps/friends-prediction
 ### Required Scripts
 
 **`setup-database.sh`**:
-- Creates database on shared SQL Server
+- Creates schema in shared `sandbox` database (NOT a separate database)
 - Configures firewall rules
 - Generates connection string
 - Outputs to `azure-config.json` and `.env.local`
@@ -47,6 +47,7 @@ APP_NAME="{poc-name}"           # Used for resource naming
 RESOURCE_GROUP="${APP_NAME}"    # Dedicated RG per POC
 LOCATION="centralus"            # Standard region
 SQL_SERVER_NAME="dev-wiscodev"  # Shared SQL Server
+SQL_DATABASE="sandbox"          # Shared database (schema isolation)
 ```
 
 ## Resource Group Strategy

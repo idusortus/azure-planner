@@ -11,8 +11,7 @@ You are helping me create a new POC application using our established patterns.
 ## Context - Read First!
 
 Before starting, read these documents to understand our patterns:
-- `docs/poc-deployment/CHECKLIST.md` - Step-by-step process
-- `docs/poc-deployment/GUIDE.md` - Detailed explanations  
+- `docs/MASTER.md` - Single source of truth for deployment process
 - `docs/poc-deployment/DECISIONS.md` - Architecture decisions
 - `apps/todo-app/` - Working example infrastructure scripts
 - `TestPOCApp/TodoApp/` - Working example Aspire solution
@@ -70,15 +69,16 @@ Before starting, read these documents to understand our patterns:
 
 ### Phase 4: Azure Deployment
 
-1. Create Dockerfile (paths relative to solution root!)
+1. Create Dockerfile (paths relative to solution root! ServiceDefaults is at root, NOT in src/)
 2. Build and push to shared ACR
-3. Create Container Apps environment in `{poc-name}` RG
-4. Deploy API with connection string env var
-5. Create production `config.js` with Container App URL
+3. Deploy API to shared Container Apps environment (`todoapp-env` in `todo-app` RG — subscription limit: 1 env)
+4. Set connection string as Container App secret
+5. Update frontend with API URL
 6. **Fix GitHub Actions workflow**:
    - Edit `.github/workflows/azure-static-web-apps-*.yml`
    - Update `app_location` to `TestPOCApp/{PocName}/src/{PocName}.Web/wwwroot`
-7. Push to deploy frontend via GitHub Actions
+7. Enable CORS on Container App ingress for the SWA domain
+8. Push to deploy frontend via GitHub Actions
 
 ### Phase 5: Documentation
 
@@ -116,15 +116,17 @@ wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io/{poc-name}-api:latest
 
 ### Connection String Format
 ```
-Server=dev-wiscodev.database.windows.net;Database={poc-name}-db;User Id={user};Password={pass};TrustServerCertificate=True;
+Server=dev-wiscodev.database.windows.net;Database=sandbox;User Id={user};Password={pass};TrustServerCertificate=True;
 ```
+
+**Note**: All POCs share the `sandbox` database. Schema isolation is set via `modelBuilder.HasDefaultSchema("{poc_schema}")` in the DbContext.
 
 ## Living Documentation Rule
 
 After completing the POC, if we learn something new:
-1. Update `docs/poc-deployment/CHECKLIST.md` if process changed
-2. Update `docs/poc-deployment/GUIDE.md` if explanations needed
-3. Add decisions to `docs/poc-deployment/DECISIONS.md`
+1. Update `docs/MASTER.md` if process changed
+2. Add decisions to `docs/poc-deployment/DECISIONS.md`
+3. Update `docs/deployed-resources.md` with new resources
 4. Update this prompt if instructions need refinement
 
 **Do this automatically without me asking!**

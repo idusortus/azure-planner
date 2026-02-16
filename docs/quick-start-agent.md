@@ -30,7 +30,7 @@ Get up and running with the Azure advisor agent in 5 minutes!
 ### Step 2: Configure the Agent
 
 ```bash
-cd c:\dev\tools\az-devops\src\BudgetFriendlyAzureAdvisor
+cd c:\dev\side-projects\azure-planner\src\BudgetFriendlyAzureAdvisor
 
 # Copy the template
 copy .env.template .env
@@ -61,8 +61,8 @@ dotnet run
 
 You should see:
 ```
-📁 Workspace: c:\dev\tools\az-devops
-📚 Docs folder: c:\dev\tools\az-devops\docs
+📁 Workspace: c:\dev\side-projects\azure-planner
+📚 Docs folder: c:\dev\side-projects\azure-planner\docs
 🤖 Model: gpt-4o
 
 🔌 Connecting to Microsoft Learn MCP server...
@@ -190,7 +190,7 @@ dotnet nuget add source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotn
 
 ```bash
 # Terminal 1: Start the agent
-C:\dev\tools\az-devops\src\BudgetFriendlyAzureAdvisor> dotnet run
+C:\dev\side-projects\azure-planner\src\BudgetFriendlyAzureAdvisor> dotnet run
 
 # Terminal 2: Interact with it
 curl -X POST http://localhost:8087 -H "Content-Type: application/json" -d "{\"messages\": [{\"role\": \"user\", \"content\": \"What Azure services have completely free tiers?\"}]}"

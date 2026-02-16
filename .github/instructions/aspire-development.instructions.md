@@ -29,12 +29,14 @@ Run `copy-config.sh` in the Aspire solution folder to propagate these configs to
 Standard Aspire solution layout:
 ```
 {PocName}.sln
+{PocName}.AppHost/             # Orchestration (local dev only)
+{PocName}.ServiceDefaults/     # Shared configs — at SOLUTION ROOT, NOT in src/
 src/
-  {PocName}.AppHost/           # Orchestration
-  {PocName}.ServiceDefaults/   # Shared configs
   {PocName}.Api/               # .NET WebAPI
   {PocName}.Web/               # Static files (wwwroot/)
 ```
+
+**IMPORTANT**: `ServiceDefaults` lives at the **solution root**, not inside `src/`. Docker builds must account for this.
 
 ## AppHost Configuration
 
@@ -152,18 +154,35 @@ dotnet run --project src/{PocName}.AppHost
 # Aspire Dashboard: http://localhost:15888
 ```
 
+## Database Schema Isolation
+
+All POCs share a single `sandbox` database. Each POC gets its own schema:
+
+```csharp
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.HasDefaultSchema("{poc_schema_name}");
+}
+```
+
 ## Azure Deployment
 
+Deployment uses **manual Azure CLI** commands (not `azd`). See [docs/MASTER.md](../../docs/MASTER.md) Phase 4 for the full process:
+
 ```bash
-# Initialize
-azd init
-# Select existing resource group: {poc-name}
+# Build and push Docker image
+az acr login --name wiscodevacr
+docker build -t wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io/{poc-name}-api:latest -f src/{PocName}.Api/Dockerfile .
+docker push wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io/{poc-name}-api:latest
 
-# Deploy
-azd up
-
-# Update specific service
-azd deploy api
+# Deploy to shared Container Apps environment
+MSYS_NO_PATHCONV=1 az containerapp create \
+  --name {poc-name}-api \
+  --resource-group {poc-name} \
+  --environment "$ENV_ID" \
+  --image wiscodevacr-b0cegxg6hnd2bwc8.azurecr.io/{poc-name}-api:latest \
+  --target-port 8080 --ingress external \
+  --min-replicas 0 --max-replicas 1
 ```
 
 ## Key Vault Integration
