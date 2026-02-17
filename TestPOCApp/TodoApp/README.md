@@ -1,17 +1,56 @@
-# TODO App - Aspire Solution
+# TODO App - Complete Deployable Framework
 
 **Location**: `/TestPOCApp/TodoApp`  
 **Framework**: .NET 10 Aspire  
 **Status**: ✅ DEPLOYED TO AZURE
 
-## 🌐 Live URLs
+> **Demonstrates three frontend approaches**: Vanilla JS, React, and React Native  
+> **Cost**: ~$5-7/month total for all components
 
-| Component | URL |
-|-----------|-----|
-| **API** | https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io |
-| **Health Check** | https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io/health |
-| **Todos Endpoint** | https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io/api/todos |
-| **Frontend** | https://happy-desert-065eace10.6.azurestaticapps.net |
+## 📚 Documentation
+
+| Guide | Purpose |
+|-------|---------|
+| **[COMPLETE_GUIDE.md](COMPLETE_GUIDE.md)** | 🌟 **START HERE** - Full repeatable deployment process |
+| **[FRAMEWORK_COMPARISON.md](FRAMEWORK_COMPARISON.md)** | Honest comparison: Vanilla JS vs React vs React Native |
+| **[DEPLOY_REACT_SPA.md](DEPLOY_REACT_SPA.md)** | React SPA deployment guide |
+| **[mobile/TodoApp.Mobile/README.md](mobile/TodoApp.Mobile/README.md)** | React Native mobile app guide |
+
+## 🌐 Live Deployments
+
+| Component | URL | Tech Stack |
+|-----------|-----|------------|
+| **API** | [todoapp-api](https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io) | .NET 10 Minimal API |
+| **Health Check** | [/health](https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io/health) | Container Apps |
+| **Vanilla JS Frontend** | [happy-desert](https://happy-desert-065eace10.6.azurestaticapps.net) | Static Web Apps |
+| **Todos Endpoint** | [/api/todos](https://todoapp-api.politeriver-ded1b871.centralus.azurecontainerapps.io/api/todos) | Azure SQL Serverless |
+
+## 🎯 Frontend Options
+
+This POC demonstrates **three different frontend approaches** to the same backend:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                  CHOOSE YOUR FRONTEND                   │
+├──────────────┬──────────────┬───────────────────────────┤
+│ 1. Vanilla JS│ 2. React SPA │ 3. React Native           │
+├──────────────┼──────────────┼───────────────────────────┤
+│ ✅ Simplest  │ ✅ Modern    │ ✅ Mobile                 │
+│ ✅ No build  │ ✅ Components│ ✅ Cross-platform         │
+│ ❌ Manual DOM│ ❌ Build step│ ❌ Complex setup          │
+│              │              │                           │
+│ src/         │ src/         │ mobile/                   │
+│ TodoApp.Web/ │TodoApp.React │TodoApp.Mobile/            │
+│              │    Web/      │                           │
+└──────────────┴──────────────┴───────────────────────────┘
+```
+
+**Decision Matrix:**
+- **Quick POC?** → Vanilla JS (2 hours, 0 dependencies)
+- **Team knows React?** → React (3 hours, 156 dependencies)
+- **Need mobile app?** → React Native (5 hours, 695 dependencies)
+
+See [FRAMEWORK_COMPARISON.md](FRAMEWORK_COMPARISON.md) for detailed analysis.
 
 ## Quick Start (Local Development)
 
